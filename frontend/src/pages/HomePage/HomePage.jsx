@@ -1,3 +1,9 @@
+import { NavBar } from "../../components/NavBar/NavBar"
 export function HomePage(){
-    return <div>Hello World</div>
+    return( 
+    <>
+        <NavBar/>
+        <div>Hello World</div>
+    </>
+    )
 }
