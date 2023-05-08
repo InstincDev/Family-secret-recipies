@@ -1,6 +1,6 @@
-# Family Secret Recipes
+# Secret Family Recipes
 
-Family Secret Recipes is a recipe sharing web application that allows users to share and discover recipes. It is built using the MERN stack.
+Secret Family Recipes is a recipe sharing web application that allows users to share and discover recipes. It is built using the MERN stack.
 
 ## Features
 
