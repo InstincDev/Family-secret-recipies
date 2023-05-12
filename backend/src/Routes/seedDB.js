@@ -8,81 +8,60 @@ const seedRouter = Router();
 seedRouter.get("/", async (req, res) => {
     try {
         await Connection();
-        const meal = await Meal.find({meal:"Apple Frangipan Tart"});
+        const meal = await Meal.find({ meal: "Apple Frangipan Tart" });
         console.log(meal);
         res.status(200).json(meal);
     } catch (error) {
         console.log(error.message);
         res.status(400).send(error.message);
     }
-    // const meals = req.body.meal;
-    // const drinkAlternates = req.body.drinkAlternate;
-    // const Categorys = req.body.Category;
-    // const Areas = req.body.Area;
-    // const Instructionss = req.body.Instructions;
-    // const CreatedBys = req.body.CreatedBy;
-
-    // const newRecipe = new meal({
-    //     meal: meals,
-    //     drinkAlternate: drinkAlternates,
-    //     Category: Categorys,
-    //     Area: Areas,
-    //     Instructions: Instructionss,
-    //     CreatedBy: CreatedBys,
-    // });
-
-    // register.findOne({ meal: meals }, (err, user) => {
-    //     if (user) {
-    //         res.send("Recipe already present, create something new!");
-    //     } else {
-    //         newRecipe.save();
-    //         res.status(201).send("Voila! New Recipe is uploaded successfully");
-    //     }
-    // });
 });
-
 
 const URL = `https://www.themealdb.com/api/json/v1/1/search.php?f=`;
 // 97 < 123
 seedRouter.post("/", async (req, res) => {
     try {
-        let mealData
+        let mealData;
         for (let i = 97; i < 123; i++) {
             let alpha = String.fromCharCode(i);
             const recipe = await fetch(URL + alpha);
-        console.log(URL + alpha);
+            console.log(URL + alpha);
             let data = await recipe.json();
-            if(data.meals == null){continue}
-            mealData = getRecipes(data.meals)
-        console.log(mealData.length)
-            saveRecipes(mealData, alpha, res)
-        }  res.status(200).json(mealData);
+            if (data.meals == null) {
+                continue;
+            }
+            mealData = getRecipes(data.meals);
+            console.log(mealData.length);
+            saveRecipes(mealData, alpha, res);
+        }
+        res.status(200).json(mealData);
     } catch (error) {
         console.log(error.message);
         res.status(400).send(error.message);
     }
 });
 
-async function saveRecipes(data, alpha, res){
-    await Connection()
-    for(let j = 0; j< data.length-1; j++){
-        const title= data[j].meal
-        try {  
+async function saveRecipes(data, alpha, res) {
+    await Connection();
+    for (let j = 0; j < data.length - 1; j++) {
+        const title = data[j].meal;
+        try {
             // const test = await Meal.findOne({ meal: title })
-            await data.save()
+            await data.save();
 
-            console.log(`Voila! Recipe ${alpha} - ${j+1} is uploaded successfully`)
+            console.log(
+                `Voila! Recipe ${alpha} - ${j + 1} is uploaded successfully`
+            );
         } catch (error) {
             console.log(error.message);
-           
-           console.log('Recipe already present, create something new!') 
+            console.log("Recipe already present, create something new!");
         }
     }
 }
 
- function getRecipes(data) {
-    const recipes = []
-    for (let i = 0; i <= data.length-1; i++) {
+function getRecipes(data) {
+    const recipes = [];
+    for (let i = 0; i <= data.length - 1; i++) {
         // console.log(data[i])
         const meal = data[i].strMeal;
         const category = data[i].strCategory;
@@ -92,20 +71,20 @@ async function saveRecipes(data, alpha, res){
         const image = data[i].strMealThumb;
         const tag = getTags(data[i].strTags);
         const createdBy = "TheMealDB";
-         
+
         const newRecipe = {
-                    meal: meal,
-                    category: category,
-                    area: area,
-                    instruction: instruction,
-                    ingredient: ingredient,
-                    image: image,
-                    tag: tag,
-                    createdBy: createdBy
-                }
-                recipes.push(newRecipe)
+            meal: meal,
+            category: category,
+            area: area,
+            instruction: instruction,
+            ingredient: ingredient,
+            image: image,
+            tag: tag,
+            createdBy: createdBy,
+        };
+        recipes.push(newRecipe);
     }
-    return recipes
+    return recipes;
 }
 
 function getIngreAndMeas(data) {
@@ -125,7 +104,7 @@ function getIngreAndMeas(data) {
 }
 
 function getTags(data) {
-    return data !== null? data.split(","): null;
+    return data !== null ? data.split(",") : null;
 }
 
 export default seedRouter;
