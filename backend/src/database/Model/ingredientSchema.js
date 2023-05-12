@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-const { Schema } = mongoose;
+import { Schema } from 'mongoose';
+
 
 export const ingredientSchema = new Schema({
     ingredient: {type: String, require: true},

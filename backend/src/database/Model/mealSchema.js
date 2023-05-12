@@ -1,17 +1,16 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
-import { ingredientSchema } from './ingredientSchema';
+import { ingredientSchema } from './ingredientSchema.js';
 
 const mealSchema = new Schema({
     meal: {type:String, required: true},
-    drinkAlternate: {type:String, },
     category: {type:String, required: true},
-    area: {type:String, },
+    area: {type:String },
     instructions: {type:String, required: true},
-    image: {type:String, },
-    tag: {type:[String], },
-    ingredient:{type: [ingredientSchema], required: true},
-    createdBy: {type:String, }
+    image: {type:String },
+    tag: {type:[String]},
+    ingredient:{type: [ingredientSchema]},
+    createdBy: {type:String}
 });
 
 const meal = mongoose.model('Meal', mealSchema)

@@ -3,6 +3,7 @@ import cors from "cors"
 import * as dotenv from "dotenv"
 import Connection from "./database/db.js";
 import mealRouter from "./Routes/newMeal.js";
+import seedRouter from "./Routes/seedDB.js";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ server.use(express.json())
 server.use(cors())
 
 // Routes
+server.use("/seed", seedRouter);
 server.use("/recipe", mealRouter);
 // PORT Listen 
 server.listen(PORT, ()=>{
