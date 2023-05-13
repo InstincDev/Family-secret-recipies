@@ -4,18 +4,18 @@ import Meal from "../database/Model/mealSchema.js";
 import fetch from "node-fetch";
 const seedRouter = Router();
 
-// Route to save a new meal
-seedRouter.get("/", async (req, res) => {
-    try {
-        await Connection();
-        const meal = await Meal.find({ meal: "Apple Frangipan Tart" });
-        console.log(meal);
-        res.status(200).json(meal);
-    } catch (error) {
-        console.log(error.message);
-        res.status(400).send(error.message);
-    }
-});
+// // Route to save a new meal
+// seedRouter.get("/", async (req, res) => {
+//     try {
+//         await Connection();
+//         const meal = await Meal.find({ meal: "Apple Frangipan Tart" });
+//         console.log(meal);
+//         res.status(200).json(meal);
+//     } catch (error) {
+//         console.log(error.message);
+//         res.status(400).send(error.message);
+//     }
+// });
 
 const URL = `https://www.themealdb.com/api/json/v1/1/search.php?f=`;
 // 97 < 123
