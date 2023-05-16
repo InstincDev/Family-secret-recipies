@@ -21,8 +21,7 @@ const URL = `https://www.themealdb.com/api/json/v1/1/search.php?f=`;
 // 97 < 123
 seedRouter.post("/", async (req, res) => {
     try {
-        let mealData;
-        for (let i = 97; i < 123; i++) {
+        for (let i = 97; i < 98; i++) {
             let alpha = String.fromCharCode(i);
             const recipe = await fetch(URL + alpha);
             console.log(URL + alpha);
@@ -30,40 +29,23 @@ seedRouter.post("/", async (req, res) => {
             if (data.meals == null) {
                 continue;
             }
-            mealData = getRecipes(data.meals);
-            console.log(mealData.length);
-            saveRecipes(mealData, alpha, res);
+            console.log(data.meals.length);
+             postRecipes(data.meals, alpha);
+           
         }
-        res.status(200).json(mealData);
+        res.status(200).send("Database has been seeded!");
     } catch (error) {
         console.log(error.message);
         res.status(400).send(error.message);
     }
 });
 
-async function saveRecipes(data, alpha, res) {
+
+async function postRecipes(data, alpha) { 
+    let numNewRecipes = 0
     await Connection();
-    for (let j = 0; j < data.length - 1; j++) {
-        const title = data[j].meal;
-        try {
-            // const test = await Meal.findOne({ meal: title })
-            await data.save();
-
-            console.log(
-                `Voila! Recipe ${alpha} - ${j + 1} is uploaded successfully`
-            );
-        } catch (error) {
-            console.log(error.message);
-            console.log("Recipe already present, create something new!");
-        }
-    }
-}
-
-function getRecipes(data) {
-    const recipes = [];
     for (let i = 0; i <= data.length - 1; i++) {
-        // console.log(data[i])
-        const meal = data[i].strMeal;
+        let meal = data[i].strMeal;
         const category = data[i].strCategory;
         const area = data[i].strArea;
         const instruction = data[i].strInstructions;
@@ -72,19 +54,29 @@ function getRecipes(data) {
         const tag = getTags(data[i].strTags);
         const createdBy = "TheMealDB";
 
-        const newRecipe = {
+       const recipes= new Meal({
             meal: meal,
             category: category,
             area: area,
-            instruction: instruction,
+            instructions: instruction,
             ingredient: ingredient,
             image: image,
             tag: tag,
             createdBy: createdBy,
-        };
-        recipes.push(newRecipe);
-    }
-    return recipes;
+        });
+
+        try {
+          recipes.save()
+            console.log(
+                `Voila! Recipe ${alpha} - ${i + 1} is uploaded successfully`
+            );
+            numNewRecipes++
+        } catch (error) {
+            console.log(error.message);
+            console.log("Recipe already present, create something new!");
+        }
+    } 
+    console.log(numNewRecipes);
 }
 
 function getIngreAndMeas(data) {
