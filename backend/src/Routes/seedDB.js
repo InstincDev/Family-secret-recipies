@@ -21,7 +21,7 @@ const URL = `https://www.themealdb.com/api/json/v1/1/search.php?f=`;
 // 97 < 123
 seedRouter.post("/", async (req, res) => {
     try {
-        for (let i = 97; i < 98; i++) {
+        for (let i = 97; i < 123; i++) {
             let alpha = String.fromCharCode(i);
             const recipe = await fetch(URL + alpha);
             console.log(URL + alpha);
