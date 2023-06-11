@@ -1,6 +1,5 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import { HomePage, RecipePage, UserProfilePage } from "./pages";
-import { useState } from 'react'
 import './App.css'
 
 function App() {
