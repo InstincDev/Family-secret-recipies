@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { NavBar } from "../../components/NavBar/NavBar";
-import { RecipeCard } from "../../components/RecipeCard/RecipeCard";
+import { RecipeCard } from "../../components/RecipePin/RecipePin";
 import {mealList} from "./HomePage.module.sass"
 
-export function HomePage() {
+const  HomePage = () => {
     const [recipeList, setRecipeList] = useState(null);
     //    const [error, setError] = useState(null)
 
@@ -56,3 +56,4 @@ export function HomePage() {
         </>
     );
 }
+ export default HomePage

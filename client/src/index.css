@@ -20,10 +20,68 @@ a:hover {
 }
 
 body {
-  margin: 0;
+	font-family: 'Montserrat', sans-serif;
+	margin: 0; 
   min-width: 320px;
   min-height: 100vh;
+	padding: 0;
+	background-color: #D7C9AA;
 }
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+	background-color: #7EBDC3;
+	color: #fff;
+	text-align: center;
+	padding: 20px;
+}
+/* toggle style */
+.toggle {
+    
+    /* position: relative; */
+    cursor: pointer;
+  }
+  
+  .toggle input {
+    display: none;
+  }
+   
+  /* size of the toggle */
+  .slider {
+    width: 60px;
+    height: 34px;
+    position: absolute;
+    top: 4.75rem;
+    right: 1.5rem;
+    background-color:  #D7C9AA ;
+    border-radius: 34px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color:  #D7996D;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+  }
+  
+  input:checked + .slider {
+    background-color: #D7996d;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+    background-color: #320b1a; 
+  }
+  
 
 h1 {
   font-size: 3.2em;

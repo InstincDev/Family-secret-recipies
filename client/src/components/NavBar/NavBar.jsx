@@ -1,5 +1,5 @@
 import "./NavBar.css"
-export function NavBar(){
+const NavBar = ()=> {
     return(
         <div class="header">
             <h1>Secret Family Recipes</h1>
@@ -10,3 +10,4 @@ export function NavBar(){
         </div>
     )
 } 
+export default NavBar
