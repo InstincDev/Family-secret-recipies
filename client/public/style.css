@@ -255,6 +255,8 @@ small {
   margin-top: 0.5em;
 }
 
+
+/* Dark mode */
 body.dark-mode {
     background-color: #320b1a;
     color: #E5E5E5;

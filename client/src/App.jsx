@@ -1,5 +1,7 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import { HomePage, RecipePage, UserProfilePage } from "./pages";
+import HomePage from "./pages/HomePage/HomePage.jsx";
+import RecipePage from "./pages/RecipePage/RecipePage.jsx";
+import {UserProfilePage} from "./pages/UserProfilePage/UserProfilePage.jsx";
 import './App.css'
 
 function App() {

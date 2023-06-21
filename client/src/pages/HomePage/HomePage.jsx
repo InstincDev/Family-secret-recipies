@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { NavBar } from "../../components/NavBar/NavBar";
-import { RecipeCard } from "../../components/RecipePin/RecipePin";
+import NavBar from "../../components/NavBar/NavBar";
+import RecipePin from "../../components/RecipePin/RecipePin";
 import {mealList} from "./HomePage.module.sass"
 
 const  HomePage = () => {
@@ -33,7 +33,7 @@ const  HomePage = () => {
                     {recipeList &&
                         recipeList.map(({ meal, category, image }, i) => (
                             <li className= {mealList} key={`recipeList-${i}`}>
-                                <RecipeCard
+                                <RecipePin
                                     meal={meal}
                                     description={category}
                                     image={image}

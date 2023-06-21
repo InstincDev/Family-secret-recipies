@@ -1,3 +1,7 @@
-export {HomePage} from './HomePage/HomePage'
-export {RecipePage} from './RecipePage/RecipePage'
+export * from './HomePage';
+// export * from './RecipePage';
 export {UserProfilePage} from './UserProfilePage/UserProfilePage'
+
+// export * from "./HomePage"
+// export * from "./RecipePage"
+// export * from "./UserProfilePage"

@@ -2,8 +2,7 @@ import React from "react";
 
 const RecipeCard = () => {
     return (
-        <div>
-            {" "}
+      <>
             <div class="recipe">
                 <section class="title">
                     <h2>Recipe Title</h2>
@@ -87,7 +86,7 @@ const RecipeCard = () => {
                     </form>
                 </section>
             </div>
-        </div>
+       </>
     );
 };
 

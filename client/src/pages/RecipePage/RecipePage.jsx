@@ -1,8 +1,8 @@
-import { NavBar } from "../../components/NavBar/NavBar"
+import NavBar from "../../components/NavBar/NavBar"
 import RecipeCard from "../../components/RecipeCard/RecipeCard"
-import { HomePage } from "../HomePage/HomePage"
+import HomePage from "../HomePage/HomePage"
 
-export function RecipePage(){
+const RecipePage = () =>{
     return( 
     <>
         <NavBar/>
@@ -14,3 +14,4 @@ export function RecipePage(){
     </>
     )
 }
+export default RecipePage
