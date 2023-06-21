@@ -1,12 +1,15 @@
-import "./RecipeCard.css"
-export function RecipeCard(){
-    return(
-        <div className="pin">
-			<a href="recipe.html">
-			<img src="https://via.placeholder.com/200x200" alt="Placeholder Image"/>
-			<h2>Recipe Title</h2>
-			<p>Recipe Description</p>
-		</a>
-		</div>
-    )
+import { pin, mealInfo } from "./RecipeCard.module.sass";
+
+export function RecipeCard({ meal, description, image }) {
+    return (
+        <div className={pin}>
+            <a href="recipe.html">
+                <img src={image} alt="Placeholder Image" />
+                <div className={mealInfo}>
+                    <h2>{meal}</h2>
+                    <p>{description}</p>
+                </div>
+            </a>
+        </div>
+    );
 }
