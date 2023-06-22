@@ -1,9 +1,10 @@
 import { pin, mealInfo } from "./RecipePin.module.sass";
+import RecipeCard from "../RecipeCard/RecipeCard";
 
 const RecipePin = ({ meal, description, image }) => {
     return (
         <div className={pin}>
-            <a href="recipe.html">
+            <a href={"/recipe"}>
                 <img src={image} alt="Placeholder Image" />
                 <div className={mealInfo}>
                     <h2>{meal}</h2>
@@ -12,6 +13,6 @@ const RecipePin = ({ meal, description, image }) => {
             </a>
         </div>
     );
-}
+};
 
-export default RecipePin
+export default RecipePin;

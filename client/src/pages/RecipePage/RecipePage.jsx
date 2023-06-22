@@ -7,8 +7,8 @@ const RecipePage = () =>{
     <>
         <NavBar/>
         <div>
-            <a href={HomePage}> Back</a></div>
-        <div class="container">
+            <a href={"/"}> Back</a></div>
+        <div className="container">
            <RecipeCard/>
         </div>
     </>

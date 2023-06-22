@@ -1,10 +1,10 @@
 import React from "react";
-
+import {title, recipe, recipeInfo, directions, ingredients, comments } from "./RecipeCard.module.sass"
 const RecipeCard = () => {
     return (
       <>
-            <div class="recipe">
-                <section class="title">
+            <div class={recipe}>
+                <section class={title}>
                     <h2>Recipe Title</h2>
                     <p>
                         Recipe Description - Lorem ipsum dolor sit amet
@@ -14,13 +14,13 @@ const RecipeCard = () => {
                         similique quae culpa.
                     </p>
                 </section>
-                <aside class="recipeInfo">
+                <aside class={recipeInfo}>
                     <img
                         src="https://via.placeholder.com/800x800"
                         alt="Placeholder Image"
                     />
 
-                    <section class="ingredients">
+                    <section class={ingredients}>
                         <h3>Ingredients</h3>
                         <ul>
                             <li>blah</li>
@@ -40,7 +40,7 @@ const RecipeCard = () => {
                     </section>
                 </aside>
             </div>
-            <div class="directions">
+            <div class={directions}>
                 <section>
                     <h3>Directions</h3>
                     <p>
@@ -61,7 +61,7 @@ const RecipeCard = () => {
                     </ol>
                 </section>
 
-                <section class="comments">
+                <section class={comments}>
                     <h3>Comments</h3>
                     <ul>
                         <li>
