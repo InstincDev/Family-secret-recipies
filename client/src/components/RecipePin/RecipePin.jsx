@@ -1,16 +1,20 @@
+import { useEffect, useState } from "react";
+import {Link} from "react-router-dom"
 import { pin, mealInfo } from "./RecipePin.module.sass";
-import RecipeCard from "../RecipeCard/RecipeCard";
 
-const RecipePin = ({ meal, description, image }) => {
+
+const RecipePin = ({ id, meal, description, image }) => {
+      
     return (
         <div className={pin}>
-            <a href={"/recipe"}>
+            <Link to={`/recipe/${id}`} >
                 <img src={image} alt="Placeholder Image" />
                 <div className={mealInfo}>
                     <h2>{meal}</h2>
                     <p>{description}</p>
+                    <p></p>
                 </div>
-            </a>
+            </Link>
         </div>
     );
 };

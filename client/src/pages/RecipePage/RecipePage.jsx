@@ -1,15 +1,18 @@
+import { Link } from "react-router-dom"
 import NavBar from "../../components/NavBar/NavBar"
 import RecipeCard from "../../components/RecipeCard/RecipeCard"
-import HomePage from "../HomePage/HomePage"
 
-const RecipePage = () =>{
+
+const RecipePage = ({recipeList}) =>{
+   
     return( 
     <>
         <NavBar/>
         <div>
-            <a href={"/"}> Back</a></div>
+            <Link to={"/"}> Back</Link>
+            </div>
         <div className="container">
-           <RecipeCard/>
+           <RecipeCard recipes={recipeList}/>
         </div>
     </>
     )

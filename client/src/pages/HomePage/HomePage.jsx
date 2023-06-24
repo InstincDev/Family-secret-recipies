@@ -3,27 +3,8 @@ import NavBar from "../../components/NavBar/NavBar";
 import RecipePin from "../../components/RecipePin/RecipePin";
 import {mealList} from "./HomePage.module.sass"
 
-const  HomePage = () => {
-    const [recipeList, setRecipeList] = useState(null);
-    //    const [error, setError] = useState(null)
-
-    // use useEffect to fetch and render data onLoad()
-
-    useEffect(() => {
-        const URL = "http://localhost:7575/recipe";
-        async function getRecipes() {
-            try {
-                const response = await fetch(URL);
-                const data = await response.json();
-                setRecipeList(data);
-                console.log(data);
-                // TODO - randomize data
-            } catch (error) {
-                console.log(error.message);
-            }
-        }
-        getRecipes();
-    }, []);
+const  HomePage = ({recipeList}) => {
+    console.log(recipeList);
 
     return (
         <>
@@ -31,16 +12,18 @@ const  HomePage = () => {
             <div>
                 <ul className="container">
                     {recipeList &&
-                        recipeList.map(({ meal, category, image }, i) => (
+                        recipeList.map(( recipe, i) => (
                             <li className= {mealList} key={`recipeList-${i}`}>
                                 <RecipePin
-                                    meal={meal}
-                                    description={category}
-                                    image={image}
+                                    id = {recipe._id}
+                                    meal={recipe.meal}
+                                    description={recipe.category}
+                                    image={recipe.image}
                                 />
                             </li>
                         ))}
                 </ul>
+
                 {/* <RecipeCard />
                 <RecipeCard />
                 <RecipeCard />
