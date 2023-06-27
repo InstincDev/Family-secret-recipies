@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
+import Favorites from "../../components/Favorites/Favorites";
+import FamilyGroups from "../../components/FamilyGroups/FamilyGroups";
 import RecipePin from "../../components/RecipePin/RecipePin";
 import {mealList} from "./HomePage.module.sass"
 
@@ -10,6 +12,8 @@ const  HomePage = ({recipeList}) => {
         <>
             <NavBar />
             <div>
+            <Favorites/>
+            <FamilyGroups/>
                 <ul className="container">
                     {recipeList &&
                         recipeList.map(( recipe, i) => (

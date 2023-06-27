@@ -1,4 +1,4 @@
-const URL = "http://localhost:7575/recipe"
+const URL = import.meta.env.VITE_REACT_APP_URL
 
 export async function getRecipes(){
     try {

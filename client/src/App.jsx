@@ -7,20 +7,18 @@ import './App.css'
 
 function App() {
   const [recipeList, setRecipeList] = useState(null);
-  //    const [error, setError] = useState(null)
-
-  // use useEffect to fetch and render data onLoad()
-
+  
   useEffect(() => {
-      const URL = "http://localhost:7575/recipe";
+      const URL = import.meta.env.VITE_REACT_APP_URL;
       async function getRecipes() {
-          try {
-              const response = await fetch(URL);
-              const data = await response.json();
+        try {
+          const response = await fetch(URL
+            );
+                const data = await response.json();
               setRecipeList(data);
               // TODO - randomize data
           } catch (error) {
-              console.log(error.message);
+              // console.log(error.message);
           }
       }
       getRecipes();
