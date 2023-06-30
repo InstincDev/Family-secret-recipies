@@ -6,13 +6,13 @@ import RecipePin from "../../components/RecipePin/RecipePin";
 import {mealList} from "./HomePage.module.sass"
 
 const  HomePage = ({recipeList}) => {
-    console.log(recipeList);
-
+// console.log(recipeList);
+   
     return (
-        <>
+        <> 
             <NavBar />
             <div>
-            <Favorites/>
+            <Favorites recipeList = {recipeList}/>
             <FamilyGroups/>
                 <ul className="container">
                     {recipeList &&

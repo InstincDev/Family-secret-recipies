@@ -1,14 +1,10 @@
-const URL = import.meta.env.VITE_REACT_APP_URL
+import axios from "axios";
 
-export async function getRecipes(){
-    try {
-        const response = await fetch(URL)
-        const data = await response.json()
-        // console.log(data);
-        return data[0]
-        // TODO - randomize data
-            
-    } catch (error) {
-        console.log(error.message)
-    }
-}
+const URL = import.meta.env.VITE_REACT_APP_URL;
+
+export const fetchRecipes = async () => {
+    const response = axios.get(URL);
+
+    return response;
+    // TODO - randomize data
+};
