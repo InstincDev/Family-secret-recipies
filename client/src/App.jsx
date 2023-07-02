@@ -6,6 +6,13 @@ import { UserProfilePage } from "./pages/UserProfilePage/UserProfilePage.jsx";
 import { fetchRecipes } from "./utils/serverRequests.js";
 import "./App.css";
 
+//ToDo
+// create state array for slider types
+// create fn to get random types for each slider state array
+// create state obj for all slider state arrays
+// pass state obj to Home page
+
+
 function App() {
     const [recipeList, setRecipeList] = useState([]);
 

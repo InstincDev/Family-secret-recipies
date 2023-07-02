@@ -1,9 +1,22 @@
 import { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
-import Favorites from "../../components/Favorites/Favorites";
-import FamilyGroups from "../../components/FamilyGroups/FamilyGroups";
-import RecipePin from "../../components/RecipePin/RecipePin";
-import {mealList} from "./HomePage.module.sass"
+import Favorites from "../../components/Sliders/User/Favorites/Favorites";
+
+import Area from "../../components/Sliders/Area/Area";
+
+import Category from "../../components/Sliders/Category/Category";
+
+import Ingredients from "../../components/Sliders/Ingredients/Ingredients";
+
+import Tags from "../../components/Sliders/Tags/Tags";
+
+import FamilyGroups from "../../components/Sliders/User/FamilyGroups/FamilyGroups";
+
+// ToDo
+// create useEffect fn to get random recipes by passes state obj array
+// create state obj for each Set of random recipes
+// pass state obj to specific slider component
+
 
 const  HomePage = ({recipeList}) => {
 // console.log(recipeList);
@@ -12,9 +25,14 @@ const  HomePage = ({recipeList}) => {
         <> 
             <NavBar />
             <div>
-            <Favorites recipeList = {recipeList}/>
-            <FamilyGroups/>
-                <ul className="container">
+            <Favorites title = "Favorites" recipeList = {recipeList}/>
+            <FamilyGroups title = "Family Group" recipeList = {recipeList}/>
+            <Area title = "Area" recipeList = {recipeList}/>
+            <Category title = "Category" recipeList = {recipeList}/>
+            <Ingredients title = "Ingredients" recipeList = {recipeList}/>
+            <Tags title = "Tags" recipeList = {recipeList}/>
+           
+                {/* <ul className="container">
                     {recipeList &&
                         recipeList.map(( recipe, i) => (
                             <li className= {mealList} key={`recipeList-${i}`}>
@@ -26,19 +44,7 @@ const  HomePage = ({recipeList}) => {
                                 />
                             </li>
                         ))}
-                </ul>
-
-                {/* <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard /> */}
+                </ul> */}
             </div>
         </>
     );

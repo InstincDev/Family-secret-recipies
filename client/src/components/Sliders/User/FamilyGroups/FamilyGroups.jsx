@@ -1,13 +1,18 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
-import RecipePin from "../../components/RecipePin/RecipePin";
-import { wrapper, mealList } from "./Favorites.module.sass";
+import RecipePin from "../../../RecipePin/RecipePin";
+import { wrapper, mealList } from "../../../Sliders/Sliders.module.sass";
 
-const Favorites = ({ recipeList }) => {
+//ToDo
+// map separate array elems into sliders
+// Add subTitle for each slider
+
+const FamilyGroups = ({ recipeList, title }) => {
     return ( 
    
         <div >
-          <h3>Favorites</h3>
+          <h3>{title}</h3>
+          <div>
              <Splide options={{perPage: 4, pagination: false, drag: 'free'}}>
                 {recipeList &&
                     recipeList.map((recipe, i) => (
@@ -24,8 +29,9 @@ const Favorites = ({ recipeList }) => {
                     </SplideSlide>    
                     ))}
             </Splide>
+            </div>
         </div> 
     );
 };
 
-export default Favorites;
+export default FamilyGroups;
