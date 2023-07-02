@@ -1,0 +1,110 @@
+.title
+  width: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+
+  p 
+    font-size: 14px
+    margin: 0
+    line-height: 1.5
+
+.recipeCard 
+  background-color: #D7996D
+  color: #320b1a
+  display: flex
+  flex-basis: 50rem
+  flex-wrap: wrap
+  align-items: start
+  gap: 1rem
+  border-radius: 5px
+  padding: 15px
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3)
+  
+  h2 
+    font-size: 24px
+    margin-bottom: 5px
+  
+  p
+    text-align: center
+
+.recipeInfo
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: space-around
+  width: 100%
+
+  img 
+    width: 50%
+    height: 100%
+    object-fit: cover
+    align-self: center
+    border-radius: 5px
+    margin-bottom: 10px
+  
+/* Specific styles for sample recipe page */
+
+.directions
+  display: flex
+  flex-direction: column
+  text-align: left
+
+.ingredients
+  align-self: center
+
+  ul
+    padding-left: 0
+    align-self: center
+    list-style: none
+  
+.ingredients, .directions 
+  margin-bottom: 2em
+
+
+.ingredients h2,
+.directions h2 
+  margin: 0 0 1em 0
+  font-size: 1.5em
+
+
+.ingredients ul,
+.directions ol 
+  margin-left: 2em
+
+
+.comments 
+  margin-top: 2rem
+  padding: 2rem
+  width: 25rem
+  align-self: center
+  background-color: #D7996D
+  border-radius: 5px
+
+  ul
+    padding-left: 0
+    list-style: none
+  
+  li 
+    margin-left: 0
+    padding: 1rem
+    border: 1px solid #320b1a
+    background-color: #D7C9AA
+    border-radius: 0.25em
+    margin-bottom: 1em
+  
+
+  li:last-child 
+    margin-bottom: 0
+  
+  p
+    margin: 0
+    color:#320b1a
+  
+  h3
+    margin-top: 0
+    color:#3a787E
+  
+  small 
+    display: block
+    margin-top: 0.5em
