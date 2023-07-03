@@ -11,16 +11,67 @@ import Ingredients from "../../components/Sliders/Ingredients/Ingredients";
 import Tags from "../../components/Sliders/Tags/Tags";
 
 import FamilyGroups from "../../components/Sliders/User/FamilyGroups/FamilyGroups";
-
+import { fetchRecipeSlides } from "../../utils/serverRequests.js";
 // ToDo
 // create useEffect fn to get random recipes by passes state obj array
 // create state obj for each Set of random recipes
 // pass state obj to specific slider component
 
 
-const  HomePage = ({recipeList}) => {
-// console.log(recipeList);
+const  HomePage = ({sliderTypes, recipeList}) => {
+     const [areaTypes, setAreaTypes] = useState([]);
+    // const [categoryTypes, setCategoryTypes] = useState({});
    
+   
+    useEffect(()=>{
+    const getRecipes = async (sliderTypes) => {
+        try {
+            const response = await fetchRecipeSlides("area", "American");
+            console.log(response);
+        console.log(response.data["area"]);
+            for(const i of sliderTypes){
+                
+            }
+
+            // const randomRecipes = getRandomTypes(response.data, 10);
+
+           console.log(randomRecipes);
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+    getRecipes(sliderTypes)
+   },[])
+   
+   
+   
+   function getRandomTypes(typeArray, count) {
+    const randomIndices = numberSet(count, typeArray.length);
+    const randomTypes = [];
+
+    for (const index of randomIndices) {
+        randomTypes.push(typeArray[index]);
+    }
+
+    return randomTypes;
+}
+
+function numberSet(desired, max) {
+    // condition makes sure while loop isn't sticky
+    if (max < desired) {
+        desired = max;
+    }
+
+    const set = new Set();
+
+    while (set.size < desired) {
+        set.add(Math.floor(Math.random() * max));
+    }
+
+    return [...set];
+}
+
+
     return (
         <> 
             <NavBar />

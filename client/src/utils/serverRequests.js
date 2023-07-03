@@ -8,3 +8,11 @@ export const fetchRecipes = async () => {
     return response;
     // TODO - randomize data
 };
+
+export const fetchRecipeSlides = async (group, type)=>{
+    const response = axios.get(URL)
+
+    const recipes = (await response).data.filter(recipe => recipe[group] === "")
+
+    return recipes
+}

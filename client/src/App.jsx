@@ -7,17 +7,15 @@ import { fetchRecipes } from "./utils/serverRequests.js";
 import "./App.css";
 
 //ToDo
-// create state array for slider types
-// create fn to get random types for each slider state array
-// create state obj for all slider state arrays
-// pass state obj to Home page
+// create function for getting types
+// update state sliderTypes obj
+// pass state sliderTypes obj to Home page
 
 function App() {
     const [recipeList, setRecipeList] = useState([]);
 
     const [sliderTypes, setSliderTypes] = useState([]);
-    const [areaTypes, setAreaTypes] = useState({});
-    const [categoryTypes, setCategoryTypes] = useState({});
+   
 
     useEffect(() => {
         const getRecipes = async () => {
@@ -31,84 +29,43 @@ function App() {
             }
         };
 
-        const getAreaTypes = async () => {
+        const getSliderTypes = async (types) => {
             try {
-                const recipeAreas = await fetchRecipes();
-                const areaData = recipeAreas.data;
+                const recipes = await fetchRecipes();
+                const recipeData = recipes.data;
 
-                const set = new Set();
-                for (const recipe of areaData) {
-                    if (recipe.area != null) {
-                        set.add(recipe.area);
-                    }
+                const recipeSet = new Set();
+                for (const recipe of recipeData) {
+                  if( types === "tag" && recipe[types] != null ){
+                     recipeSet.add(...recipe[types]);
+                    
+                  } else if (types === "ingredient" && recipe[types] != null) {
+                    for (const ingre of recipe[types] ) {
+                      recipeSet.add(ingre.ingredient);
+                  }
+                    }else {
+                       recipeSet.add(recipe[types]);
+                  } 
                 }
-                const areaTypes = [...set].sort();
-                const rand = getRandomTypes(areaTypes, 2)
-                const newData = { "area": rand };
-                // console.log(`new Array data ${newData}`);
-                setAreaTypes(newData);
+              
+                const recipeTypes = [...recipeSet].sort();
+               
+                const randRecipeTypes = types === "ingredient"?getRandomTypes(recipeTypes, 3):getRandomTypes(recipeTypes, 2);
+                const newTypesObj = { [types]: randRecipeTypes };
+
+                setSliderTypes((sliderTypes) => [...sliderTypes, newTypesObj]);
             } catch (error) {
                 console.log(error.message);
             }
-        };
-        
-        const getCategoryTypes = async () => {
-            try {
-                const recipeCategories = await fetchRecipes();
-                const categoryData = recipeCategories.data;
+        }
 
-                const set = new Set();
-                for (const recipe of categoryData) {
-                    if (recipe.category != null) {
-                        set.add(recipe.category);
-                    }
-                }
-                const categoryTypes = [...set].sort();
-                  const rand = getRandomTypes(categoryTypes, 2)
-                const newData = { "category": rand };
-                // console.log(`new CategoryData ${newData}`);
-                setCategoryTypes(newData);
-            } catch (error) {
-                console.log(error.message);
-            }
-        };
-        
-        //   const getTags = async () => {
-        //     try {
-        //         const recipeTags = await fetchRecipes();
-        //         const tagData = recipeTags.data
-        //         const set = new Set()
-        //         for (const recipe of tagData) {
-        //           if(recipe.tag != null){
-        //             set.add(...recipe.tag)
-        //           }
-        //         }
-        //         console.log([...set].sort());
-        //     } catch (error) {
-        //         console.log(error.message);
-        //     }
-        // };
-        //   const getTags = async () => {
-        //     try {
-        //         const recipeTags = await fetchRecipes();
-        //         const tagData = recipeTags.data
-        //         const set = new Set()
-        //         for (const recipe of tagData) {
-        //           if(recipe.tag != null){
-        //             set.add(...recipe.tag)
-        //           }
-        //         }
-        //         console.log([...set].sort());
-        //     } catch (error) {
-        //         console.log(error.message);
-        //     }
-        // };
         getRecipes();
-        getAreaTypes();
-        getCategoryTypes();
-        setSliderTypes([...sliderTypes, areaTypes])
-// setSliderTypes( [...sliderTypes, categoryTypes])
+        getSliderTypes("area");
+        getSliderTypes("category");
+        getSliderTypes("tag");
+        getSliderTypes("ingredient");
     }, []);
+    
 
     function getRandomTypes(typeArray, count) {
         const randomIndices = numberSet(count, typeArray.length);
@@ -142,7 +99,7 @@ function App() {
                 <Routes>
                     <Route
                         path="/"
-                        element={<HomePage recipeList={recipeList} />}
+                        element={<HomePage recipeList = {recipeList} sliderTypes={sliderTypes} />}
                     />
                     <Route
                         path="/recipe/:id"
