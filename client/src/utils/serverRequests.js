@@ -12,7 +12,7 @@ export const fetchRecipes = async () => {
 export const fetchRecipeSlides = async (group, type)=>{
     const response = axios.get(URL)
 
-    const recipes = (await response).data.filter(recipe => recipe[group] === "")
+    const recipes = (await response).data.filter(recipe => recipe[group] === type)
 
     return recipes
 }

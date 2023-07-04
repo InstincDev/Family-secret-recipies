@@ -4,6 +4,7 @@ import RecipePin from "../../RecipePin/RecipePin";
 import { wrapper, mealList } from "../../Sliders/Sliders.module.sass";
 
 //ToDo
+// create useEffect fn to get random recipes by passing state obj array
 // map separate array elems into sliders
 // Add subTitle for each slider
 

@@ -12,77 +12,105 @@ import Tags from "../../components/Sliders/Tags/Tags";
 
 import FamilyGroups from "../../components/Sliders/User/FamilyGroups/FamilyGroups";
 import { fetchRecipeSlides } from "../../utils/serverRequests.js";
-// ToDo
-// create useEffect fn to get random recipes by passes state obj array
-// create state obj for each Set of random recipes
-// pass state obj to specific slider component
 
+const HomePage = ({ sliderTypes, recipeList }) => {
+    const [areaTypes, setAreaTypes] = useState([]);
+    const [categoryTypes, setCategoryTypes] = useState([]);
+    const [ingredientTypes, setIngredientTypes] = useState([]);
+    const [tagTypes, setTagTypes] = useState([]);
 
-const  HomePage = ({sliderTypes, recipeList}) => {
-     const [areaTypes, setAreaTypes] = useState([]);
-    // const [categoryTypes, setCategoryTypes] = useState({});
-   
-   
-    useEffect(()=>{
-    const getRecipes = async (sliderTypes) => {
-        try {
-            const response = await fetchRecipeSlides("area", "American");
-            console.log(response);
-        console.log(response.data["area"]);
-            for(const i of sliderTypes){
+    useEffect(() => {
+        const setRecipeState = async (sliderTypes) => {
+            try {
+                for (const group of sliderTypes) {
+                    switch (Object.keys(group)[0]) {
+                        case "area":
+                            setAreaTypes(group);
+                            break;
+                        case "category":
+                            setCategoryTypes(group);
+                            break;
+                        case "ingredient":
+                            setIngredientTypes(group);
+                            break;
+                        case "tag":
+                            setTagTypes(group);
+                            break;
+                    }
+                }
+
+               /*
+               ToDo - 
+               Move this to Slider Components  
+               const response = await fetchRecipeSlides("area", "American");
+                // console.log(response);
+
+                // const randomRecipes = getRandomTypes(response.data, 10);
+
+                //    console.log(randomRecipes); 
                 
+                */
+
+            } catch (error) {
+                console.log(error.message);
             }
+        };
+        setRecipeState(sliderTypes);
+    }, []);
 
-            // const randomRecipes = getRandomTypes(response.data, 10);
+    function getRandomTypes(typeArray, count) {
+        const randomIndices = numberSet(count, typeArray.length);
+        const randomTypes = [];
 
-           console.log(randomRecipes);
-        } catch (error) {
-            console.log(error.message);
+        for (const index of randomIndices) {
+            randomTypes.push(typeArray[index]);
         }
-    };
-    getRecipes(sliderTypes)
-   },[])
-   
-   
-   
-   function getRandomTypes(typeArray, count) {
-    const randomIndices = numberSet(count, typeArray.length);
-    const randomTypes = [];
 
-    for (const index of randomIndices) {
-        randomTypes.push(typeArray[index]);
+        return randomTypes;
     }
 
-    return randomTypes;
-}
+    function numberSet(desired, max) {
+        // condition makes sure while loop isn't sticky
+        if (max < desired) {
+            desired = max;
+        }
 
-function numberSet(desired, max) {
-    // condition makes sure while loop isn't sticky
-    if (max < desired) {
-        desired = max;
+        const set = new Set();
+
+        while (set.size < desired) {
+            set.add(Math.floor(Math.random() * max));
+        }
+
+        return [...set];
     }
-
-    const set = new Set();
-
-    while (set.size < desired) {
-        set.add(Math.floor(Math.random() * max));
-    }
-
-    return [...set];
-}
-
 
     return (
-        <> 
+        <>
             <NavBar />
             <div>
-            <Favorites title = "Favorites" recipeList = {recipeList}/>
-            <FamilyGroups title = "Family Group" recipeList = {recipeList}/>
-            <Area title = "Area" recipeList = {recipeList}/>
-            <Category title = "Category" recipeList = {recipeList}/>
-            <Ingredients title = "Ingredients" recipeList = {recipeList}/>
-            <Tags title = "Tags" recipeList = {recipeList}/>
-           
+                <Favorites title="Favorites" recipeList={recipeList} />
+                <FamilyGroups title="Family Group" recipeList={recipeList} />
+                <Area
+                    title="Area"
+                    recipeList={recipeList}
+                    slideList={areaTypes}
+                />
+                <Category
+                    title="Category"
+                    recipeList={recipeList}
+                    slideList={categoryTypes}
+                />
+                <Ingredients
+                    title="Ingredients"
+                    recipeList={recipeList}
+                    slideList={ingredientTypes}
+                />
+                <Tags
+                    title="Tags"
+                    recipeList={recipeList}
+                    slideList={tagTypes}
+                />
+
                 {/* <ul className="container">
                     {recipeList &&
                         recipeList.map(( recipe, i) => (
@@ -99,5 +127,5 @@ function numberSet(desired, max) {
             </div>
         </>
     );
-}
- export default HomePage
+};
+export default HomePage;
