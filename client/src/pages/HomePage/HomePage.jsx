@@ -20,26 +20,28 @@ const HomePage = ({ sliderTypes, recipeList }) => {
     const [tagTypes, setTagTypes] = useState([]);
 
     useEffect(() => {
-        const setRecipeState = async (sliderTypes) => {
+        const typeState = () => {
             try {
                 for (const group of sliderTypes) {
-                    switch (Object.keys(group)[0]) {
+                    const key = Object.keys(group)[0];
+                    switch (key) {
                         case "area":
-                            setAreaTypes(group);
+                            setAreaTypes(group[key]);
+
                             break;
                         case "category":
-                            setCategoryTypes(group);
+                            setCategoryTypes(group[key]);
                             break;
                         case "ingredient":
-                            setIngredientTypes(group);
+                            setIngredientTypes(group[key]);
                             break;
                         case "tag":
-                            setTagTypes(group);
+                            setTagTypes(group[key]);
                             break;
                     }
                 }
 
-               /*
+                /*
                ToDo - 
                Move this to Slider Components  
                const response = await fetchRecipeSlides("area", "American");
@@ -50,13 +52,13 @@ const HomePage = ({ sliderTypes, recipeList }) => {
                 //    console.log(randomRecipes); 
                 
                 */
-
             } catch (error) {
-                console.log(error.message);
+                console.error(error.message);
             }
         };
-        setRecipeState(sliderTypes);
-    }, []);
+        typeState();
+        // console.log(`AreaTypes ${areaTypes}`);
+    }, [sliderTypes]);
 
     function getRandomTypes(typeArray, count) {
         const randomIndices = numberSet(count, typeArray.length);
@@ -91,7 +93,7 @@ const HomePage = ({ sliderTypes, recipeList }) => {
                 <Favorites title="Favorites" recipeList={recipeList} />
                 <FamilyGroups title="Family Group" recipeList={recipeList} />
                 <Area
-                    title="Area"
+                    title="area"
                     recipeList={recipeList}
                     slideList={areaTypes}
                 />

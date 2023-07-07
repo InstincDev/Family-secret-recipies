@@ -9,10 +9,7 @@ export const fetchRecipes = async () => {
     // TODO - randomize data
 };
 
-export const fetchRecipeSlides = async (group, type)=>{
-    const response = axios.get(URL)
-
-    const recipes = (await response).data.filter(recipe => recipe[group] === type)
-
-    return recipes
+export const fetchRecipeSlides = async ()=>{
+    const response = axios.get(URL) 
+    return response
 }

@@ -25,7 +25,7 @@ function App() {
 
                 setRecipeList(randomRecipes);
             } catch (error) {
-                console.log(error.message);
+                console.error(error.message);
             }
         };
 
@@ -55,7 +55,7 @@ function App() {
 
                 setSliderTypes((sliderTypes) => [...sliderTypes, newTypesObj]);
             } catch (error) {
-                console.log(error.message);
+                console.error(error.message);
             }
         }
 
