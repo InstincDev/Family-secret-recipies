@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import RecipePin from "../../RecipePin/RecipePin";
-import { fetchRecipeSlides } from "../../../utils/serverRequests.js";
 import { wrapper, mealList } from "../../Sliders/Sliders.module.sass";
+import { fetchRecipeSlides } from "../../../utils/serverRequests.js";
 
 //ToDo
 // create useEffect fn to get random recipes by passing state obj array

@@ -62,17 +62,17 @@ const HomePage = ({ sliderTypes, recipeList }) => {
                     slideList={areaTypes}
                 />
                 <Category
-                    title="Category"
+                    title="category"
                     recipeList={recipeList}
                     slideList={categoryTypes}
                 />
                 <Ingredients
-                    title="Ingredients"
+                    title="ingredients"
                     recipeList={recipeList}
                     slideList={ingredientTypes}
                 />
                 <Tags
-                    title="Tags"
+                    title="tags"
                     recipeList={recipeList}
                     slideList={tagTypes}
                 />
