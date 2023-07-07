@@ -1,16 +1,16 @@
+import { useState, useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import RecipePin from "../../RecipePin/RecipePin";
 import { fetchRecipeSlides } from "../../../utils/serverRequests.js";
 import { wrapper, mealList } from "../../Sliders/Sliders.module.sass";
-import { useState, useEffect } from "react";
 
 //ToDo
 // create useEffect fn to get random recipes by passing state obj array
 // map separate array elems into sliders
 // Add subTitle for each slider
 
-const Area = ({ recipeList, title, slideList }) => {
+const Area = ({ title, slideList }) => {
     const [recipeSlide1, setRecipeSlide1] = useState([]);
     const [recipeSlide2, setRecipeSlide2] = useState([]);
 
@@ -36,24 +36,7 @@ const Area = ({ recipeList, title, slideList }) => {
             }
         };
        
-        // const sortRecipes = (lists)=>{
-
-        //     try {
-        //         console.log(lists);
-        //         const recipes = lists.filter(recipe => {
-        //             if (recipe[title.toLowerCase()] === slideList[0]) {
-        //                 console.log(recipe);
-        //                 // setRecipeSlide1(()=>[...recipeSlide1, recipe]);
-        //             } 
-        //         });
-        //         console.log(recipes);
-               
-        //         const randomRecipes = getRandomTypes(recipes, 10);
-        //         setRecipeSlide1(randomRecipes);
-        //     } catch (error) {
-        //         console.error(error.message);
-        //     }
-        // }
+        
     getRecipes();
         
     }, [slideList]);

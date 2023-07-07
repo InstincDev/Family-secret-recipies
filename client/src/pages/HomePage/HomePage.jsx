@@ -11,7 +11,7 @@ import Ingredients from "../../components/Sliders/Ingredients/Ingredients";
 import Tags from "../../components/Sliders/Tags/Tags";
 
 import FamilyGroups from "../../components/Sliders/User/FamilyGroups/FamilyGroups";
-import { fetchRecipeSlides } from "../../utils/serverRequests.js";
+
 
 const HomePage = ({ sliderTypes, recipeList }) => {
     const [areaTypes, setAreaTypes] = useState([]);
@@ -41,51 +41,16 @@ const HomePage = ({ sliderTypes, recipeList }) => {
                     }
                 }
 
-                /*
-               ToDo - 
-               Move this to Slider Components  
-               const response = await fetchRecipeSlides("area", "American");
-                // console.log(response);
-
-                // const randomRecipes = getRandomTypes(response.data, 10);
-
-                //    console.log(randomRecipes); 
-                
-                */
             } catch (error) {
                 console.error(error.message);
             }
         };
+
         typeState();
-        // console.log(`AreaTypes ${areaTypes}`);
+       
     }, [sliderTypes]);
 
-    function getRandomTypes(typeArray, count) {
-        const randomIndices = numberSet(count, typeArray.length);
-        const randomTypes = [];
-
-        for (const index of randomIndices) {
-            randomTypes.push(typeArray[index]);
-        }
-
-        return randomTypes;
-    }
-
-    function numberSet(desired, max) {
-        // condition makes sure while loop isn't sticky
-        if (max < desired) {
-            desired = max;
-        }
-
-        const set = new Set();
-
-        while (set.size < desired) {
-            set.add(Math.floor(Math.random() * max));
-        }
-
-        return [...set];
-    }
-
+    
     return (
         <>
             <NavBar />
@@ -94,7 +59,6 @@ const HomePage = ({ sliderTypes, recipeList }) => {
                 <FamilyGroups title="Family Group" recipeList={recipeList} />
                 <Area
                     title="area"
-                    recipeList={recipeList}
                     slideList={areaTypes}
                 />
                 <Category
@@ -113,19 +77,6 @@ const HomePage = ({ sliderTypes, recipeList }) => {
                     slideList={tagTypes}
                 />
 
-                {/* <ul className="container">
-                    {recipeList &&
-                        recipeList.map(( recipe, i) => (
-                            <li className= {mealList} key={`recipeList-${i}`}>
-                                <RecipePin
-                                    id = {recipe._id}
-                                    meal={recipe.meal}
-                                    description={recipe.category}
-                                    image={recipe.image}
-                                />
-                            </li>
-                        ))}
-                </ul> */}
             </div>
         </>
     );
