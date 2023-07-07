@@ -2,16 +2,11 @@ import { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Favorites from "../../components/Sliders/User/Favorites/Favorites";
 
-import Area from "../../components/Sliders/Area/Area";
+import RecipeSlide from "../../components/Sliders/RecipeSlide";
 
-import Category from "../../components/Sliders/Category/Category";
 
-import Ingredients from "../../components/Sliders/Ingredients/Ingredients";
-
-import Tags from "../../components/Sliders/Tags/Tags";
 
 import FamilyGroups from "../../components/Sliders/User/FamilyGroups/FamilyGroups";
-
 
 const HomePage = ({ sliderTypes, recipeList }) => {
     const [areaTypes, setAreaTypes] = useState([]);
@@ -40,43 +35,47 @@ const HomePage = ({ sliderTypes, recipeList }) => {
                             break;
                     }
                 }
-
             } catch (error) {
                 console.error(error.message);
             }
         };
 
         typeState();
-       
     }, [sliderTypes]);
 
-    
     return (
         <>
             <NavBar />
             <div>
                 <Favorites title="Favorites" recipeList={recipeList} />
+
                 <FamilyGroups title="Family Group" recipeList={recipeList} />
-                <Area
+                <h4>Area</h4>
+
+                <RecipeSlide
                     title="area"
+                    recipeList={recipeList}
                     slideList={areaTypes}
                 />
-                <Category
+                <h4>Category</h4>
+
+                <RecipeSlide
                     title="category"
                     recipeList={recipeList}
                     slideList={categoryTypes}
                 />
-                <Ingredients
+                <h4>Ingredient</h4>
+                <RecipeSlide
                     title="ingredients"
                     recipeList={recipeList}
                     slideList={ingredientTypes}
                 />
-                <Tags
-                    title="tags"
+                <h4>Tags</h4>
+                <RecipeSlide
+                    slideTitle="tags"
                     recipeList={recipeList}
                     slideList={tagTypes}
                 />
-
             </div>
         </>
     );

@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
-import RecipePin from "../../RecipePin/RecipePin";
-import { wrapper, mealList } from "../../Sliders/Sliders.module.sass";
-import { fetchRecipeSlides } from "../../../utils/serverRequests.js";
+import RecipePin from "../RecipePin/RecipePin";
+import { wrapper, mealList } from "../Sliders/Sliders.module.sass";
+import { fetchRecipeSlides } from "../../utils/serverRequests.js";
 
 //ToDo
 // create useEffect fn to get random recipes by passing state obj array
 // map separate array elems into sliders
 // Add subTitle for each slider
 
-const Area = ({ title, slideList }) => {
+const Area = ({ recipeList, title, slideList }) => {
     const [recipeSlide1, setRecipeSlide1] = useState([]);
     const [recipeSlide2, setRecipeSlide2] = useState([]);
 
@@ -19,30 +19,27 @@ const Area = ({ title, slideList }) => {
             try {
                 const response = await fetchRecipeSlides();
                 const data = response.data;
-                
-                const slide1 = data.filter(recipe=> recipe[title] === slideList[0])
-               
-                const slide2 = data.filter(recipe=> recipe[title] === slideList[1])
-                
-                
+
+                const slide1 = data.filter(
+                    (recipe) => recipe[title] === slideList[0]
+                );
+
+                const slide2 = data.filter(
+                    (recipe) => recipe[title] === slideList[1]
+                );
+
                 const randomRecipes1 = getRandomTypes(slide1, 10);
                 setRecipeSlide1(randomRecipes1);
 
                 const randomRecipes2 = getRandomTypes(slide2, 10);
                 setRecipeSlide2(randomRecipes2);
-
             } catch (error) {
                 console.error(error.message);
             }
         };
-       
-        
-    getRecipes();
-        
-    }, [slideList]);
- console.log(slideList);
-    console.log(recipeSlide1);
-    console.log(recipeSlide2);
+
+        getRecipes();
+    }, [slideList, recipeList]);
 
     function getRandomTypes(typeArray, count) {
         const randomIndices = numberSet(count, typeArray.length);
@@ -99,7 +96,7 @@ const Area = ({ title, slideList }) => {
                     options={{ perPage: 4, pagination: false, drag: "free" }}
                 >
                     {recipeSlide2 &&
-                       recipeSlide2.map((recipe, i) => (
+                        recipeSlide2.map((recipe, i) => (
                             <SplideSlide key={`recipeList-${i}`}>
                                 <div className={mealList}>
                                     <RecipePin

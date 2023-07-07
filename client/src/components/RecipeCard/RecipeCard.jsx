@@ -16,7 +16,7 @@ const RecipeCard = ({ recipeList }) => {
 
     useEffect(() => {
         setRecipe(recipeList.filter((recipes) => recipes._id === id));
-    }, []);
+    }, [recipeList]);
     console.log(recipe);
     return (
         <>
