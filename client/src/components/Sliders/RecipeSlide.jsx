@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { RecipeAPIContext } from "../../utils/RecipeAPIContext.jsx";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import RecipePin from "../RecipePin/RecipePin";
 import { wrapper, mealList } from "../Sliders/Sliders.module.sass";
-import { fetchRecipeSlides } from "../../utils/serverRequests.js";
+
 
 //ToDo
 // create useEffect fn to get random recipes by passing state obj array
@@ -11,9 +12,10 @@ import { fetchRecipeSlides } from "../../utils/serverRequests.js";
 // Add subTitle for each slider
 
 const RecipeSlide = ({  title, slideList }) => {
-    const [recipeSlide, setRecipeSlide] = useState([]);
+    const {recipeData} = useContext(RecipeAPIContext)
+    // const [recipeSlide, setRecipeSlide] = useState([]);
 
-    useEffect(() => {
+   /*  useEffect(() => {
         const getRecipes = async () => {
             try {
                 const response = await fetchRecipeSlides();
@@ -21,6 +23,8 @@ const RecipeSlide = ({  title, slideList }) => {
                 
                 const slides = slideList.map((slide)=>{
                     const recipes = data.filter((recipe)=>recipe[title]  === slide)
+                    console.log(`slide == ${slide}`);
+                    console.log(recipes);
                     const randomRecipes = getRandomTypes(recipes,10)
                     return randomRecipes
                 })
@@ -33,9 +37,9 @@ const RecipeSlide = ({  title, slideList }) => {
 
         getRecipes();
     }, [slideList, title]);
-    
-    console.log(title);
-    console.log(recipeSlide);
+
+    console.log(slideList);
+    // console.log(recipeSlide);
     
     function getRandomTypes(typeArray, count) {
         const randomIndices = numberSet(count, typeArray.length);
@@ -61,10 +65,11 @@ const RecipeSlide = ({  title, slideList }) => {
         }
 
         return [...set];
-    }
-
+    } */
+    console.log(recipeData);
     return (
-        <div>
+        <h3>Hello</h3>
+       /*  <div>
           {slideList.map((slide, index) => (
             <div key={index}>
               <h3>{slide}</h3>
@@ -88,7 +93,7 @@ const RecipeSlide = ({  title, slideList }) => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */
       );
     
 

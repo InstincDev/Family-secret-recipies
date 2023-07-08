@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import RecipeCard from "./components/RecipeCard/RecipeCard.jsx";
 import { UserProfilePage } from "./pages/UserProfilePage/UserProfilePage.jsx";
-import { fetchRecipes } from "./utils/serverRequests.js";
 import "./App.css";
 
 //ToDo
@@ -12,58 +11,14 @@ import "./App.css";
 // pass state sliderTypes obj to Home page
 
 function App() {
-    const [recipeList, setRecipeList] = useState([]);
+    /* // const [recipeList, setRecipeList] = useState([]);
 
-    const [sliderTypes, setSliderTypes] = useState([]);
+    // const [sliderTypes, setSliderTypes] = useState([]);
    
 
     useEffect(() => {
-        const getRecipes = async () => {
-            try {
-                const response = await fetchRecipes();
-                const randomRecipes = getRandomTypes(response.data, 10);
-
-                setRecipeList(randomRecipes);
-            } catch (error) {
-                console.error(error.message);
-            }
-        };
-
-        const getSliderTypes = async (types) => {
-            try {
-                const recipes = await fetchRecipes();
-                const recipeData = recipes.data;
-
-                const recipeSet = new Set();
-                for (const recipe of recipeData) {
-                  if( types === "tag" && recipe[types] != null ){
-                     recipeSet.add(...recipe[types]);
-                    
-                  } else if (types === "ingredient" && recipe[types] != null) {
-                    for (const ingre of recipe[types] ) {
-                      recipeSet.add(ingre.ingredient);
-                  }
-                    }else {
-                       recipeSet.add(recipe[types]);
-                  } 
-                }
-              
-                const recipeTypes = [...recipeSet].sort();
-               
-                const randRecipeTypes = types === "ingredient"?getRandomTypes(recipeTypes, 3):getRandomTypes(recipeTypes, 2);
-                const newTypesObj = { [types]: randRecipeTypes };
-
-                setSliderTypes((sliderTypes) => [...sliderTypes, newTypesObj]);
-            } catch (error) {
-                console.error(error.message);
-            }
-        }
-
-        getRecipes();
-        getSliderTypes("area");
-        getSliderTypes("category");
-        getSliderTypes("tag");
-        getSliderTypes("ingredient");
+     
+        
     }, []);
     
 
@@ -91,7 +46,7 @@ function App() {
         }
 
         return [...set];
-    }
+    } */
 
     return (
         <>
@@ -99,11 +54,11 @@ function App() {
                 <Routes>
                     <Route
                         path="/"
-                        element={<HomePage recipeList = {recipeList} sliderTypes={sliderTypes} />}
+                        element={<HomePage/>}
                     />
                     <Route
                         path="/recipe/:id"
-                        element={<RecipeCard recipeList={recipeList} />}
+                        element={<RecipeCard/>}
                     />
                     <Route path="/user" element={<UserProfilePage />} />
                 </Routes>

@@ -7,7 +7,7 @@ import { wrapper, mealList } from "../../../Sliders/Sliders.module.sass";
 // map separate array elems into sliders
 // Add subTitle for each slider
 
-const FamilyGroups = ({ recipeList, title }) => {
+const FamilyGroups = ({  title }) => {
     return ( 
    
         <div >
