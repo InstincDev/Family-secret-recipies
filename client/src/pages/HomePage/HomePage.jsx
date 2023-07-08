@@ -54,26 +54,26 @@ const HomePage = ({ sliderTypes, recipeList }) => {
 
                 <RecipeSlide
                     title="area"
-                    recipeList={recipeList}
+                   
                     slideList={areaTypes}
                 />
                 <h4>Category</h4>
 
                 <RecipeSlide
                     title="category"
-                    recipeList={recipeList}
+                   
                     slideList={categoryTypes}
                 />
                 <h4>Ingredient</h4>
                 <RecipeSlide
                     title="ingredients"
-                    recipeList={recipeList}
+                    
                     slideList={ingredientTypes}
                 />
                 <h4>Tags</h4>
                 <RecipeSlide
                     slideTitle="tags"
-                    recipeList={recipeList}
+                    
                     slideList={tagTypes}
                 />
             </div>

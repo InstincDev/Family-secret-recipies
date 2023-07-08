@@ -10,37 +10,33 @@ import { fetchRecipeSlides } from "../../utils/serverRequests.js";
 // map separate array elems into sliders
 // Add subTitle for each slider
 
-const Area = ({ recipeList, title, slideList }) => {
-    const [recipeSlide1, setRecipeSlide1] = useState([]);
-    const [recipeSlide2, setRecipeSlide2] = useState([]);
+const RecipeSlide = ({  title, slideList }) => {
+    const [recipeSlide, setRecipeSlide] = useState([]);
 
     useEffect(() => {
         const getRecipes = async () => {
             try {
                 const response = await fetchRecipeSlides();
                 const data = response.data;
-
-                const slide1 = data.filter(
-                    (recipe) => recipe[title] === slideList[0]
-                );
-
-                const slide2 = data.filter(
-                    (recipe) => recipe[title] === slideList[1]
-                );
-
-                const randomRecipes1 = getRandomTypes(slide1, 10);
-                setRecipeSlide1(randomRecipes1);
-
-                const randomRecipes2 = getRandomTypes(slide2, 10);
-                setRecipeSlide2(randomRecipes2);
+                
+                const slides = slideList.map((slide)=>{
+                    const recipes = data.filter((recipe)=>recipe[title]  === slide)
+                    const randomRecipes = getRandomTypes(recipes,10)
+                    return randomRecipes
+                })
+                setRecipeSlide(slides)
+                
             } catch (error) {
                 console.error(error.message);
             }
         };
 
         getRecipes();
-    }, [slideList, recipeList]);
-
+    }, [slideList, title]);
+    
+    console.log(title);
+    console.log(recipeSlide);
+    
     function getRandomTypes(typeArray, count) {
         const randomIndices = numberSet(count, typeArray.length);
         const randomTypes = [];
@@ -69,50 +65,34 @@ const Area = ({ recipeList, title, slideList }) => {
 
     return (
         <div>
-            <h3>{slideList[0]}</h3>
-            <div>
-                <Splide
-                    options={{ perPage: 4, pagination: false, drag: "free" }}
-                >
-                    {recipeSlide1 &&
-                        recipeSlide1.map((recipe, i) => (
-                            <SplideSlide key={`recipeList-${i}`}>
-                                <div className={mealList}>
-                                    <RecipePin
-                                        key={`recipeList1-${i}`}
-                                        id={recipe._id}
-                                        meal={recipe.meal}
-                                        description={recipe.category}
-                                        image={recipe.image}
-                                    />
-                                </div>
-                            </SplideSlide>
-                        ))}
+          {slideList.map((slide, index) => (
+            <div key={index}>
+              <h3>{slide}</h3>
+              <div>
+                <Splide options={{ perPage: 4, pagination: false, drag: 'free' }}>
+                  {recipeSlide[index] &&
+                    recipeSlide[index].map((recipe, i) => (
+                      <SplideSlide key={`recipeList-${i}`}>
+                        <div className={mealList}>
+                          <RecipePin
+                            key={`recipeList-${slide}-${i}`}
+                            id={recipe._id}
+                            meal={recipe.meal}
+                            description={recipe.category}
+                            image={recipe.image}
+                          />
+                        </div>
+                      </SplideSlide>
+                    ))}
                 </Splide>
+              </div>
             </div>
-            <h3>{slideList[1]}</h3>
-            <div>
-                <Splide
-                    options={{ perPage: 4, pagination: false, drag: "free" }}
-                >
-                    {recipeSlide2 &&
-                        recipeSlide2.map((recipe, i) => (
-                            <SplideSlide key={`recipeList-${i}`}>
-                                <div className={mealList}>
-                                    <RecipePin
-                                        key={`recipeList2-${i}`}
-                                        id={recipe._id}
-                                        meal={recipe.meal}
-                                        description={recipe.category}
-                                        image={recipe.image}
-                                    />
-                                </div>
-                            </SplideSlide>
-                        ))}
-                </Splide>
-            </div>
+          ))}
         </div>
-    );
+      );
+    
+
+   
 };
 
-export default Area;
+export default RecipeSlide;
