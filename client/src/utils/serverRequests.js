@@ -8,8 +8,3 @@ export const fetchRecipes = async () => {
     return response;
     // TODO - randomize data
 };
-
-export const fetchRecipeSlides = async ()=>{
-    const response = axios.get(URL) 
-    return response
-}

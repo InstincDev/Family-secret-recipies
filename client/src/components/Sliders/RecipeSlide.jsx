@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { RecipeAPIContext } from "../../utils/RecipeAPIContext.jsx";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
+import { fetchRecipes } from "../../utils/serverRequests.js"
 import RecipePin from "../RecipePin/RecipePin";
 import { wrapper, mealList } from "../Sliders/Sliders.module.sass";
 
@@ -13,22 +14,33 @@ import { wrapper, mealList } from "../Sliders/Sliders.module.sass";
 
 const RecipeSlide = ({  title, slideList }) => {
     const {recipeData} = useContext(RecipeAPIContext)
-    // const [recipeSlide, setRecipeSlide] = useState([]);
+    const [recipeSlide, setRecipeSlide] = useState([]);
 
-   /*  useEffect(() => {
+     useEffect(() => {
         const getRecipes = async () => {
             try {
-                const response = await fetchRecipeSlides();
-                const data = response.data;
-                
                 const slides = slideList.map((slide)=>{
-                    const recipes = data.filter((recipe)=>recipe[title]  === slide)
-                    console.log(`slide == ${slide}`);
-                    console.log(recipes);
-                    const randomRecipes = getRandomTypes(recipes,10)
+                    const recipes = recipeData.filter((recipe)=>{
+                       
+                        if(title === "ingredient"){
+                        for (const ingre of recipe[title]) {
+                            if(ingre[title] === slide){
+                                return ingre[title] === slide
+                            }   
+                        }
+                       }else if(title === "tag"){
+                        
+                        for (const tags in recipe[title]) {
+                            return recipe[title][tags] === slide
+                        }
+                       } else{ return recipe[title]  === slide}
+                    })
+                    
+                    
+                    const randomRecipes = getRandomTypes(recipes, 10)
                     return randomRecipes
                 })
-                setRecipeSlide(slides)
+                setRecipeSlide(slides);
                 
             } catch (error) {
                 console.error(error.message);
@@ -36,10 +48,10 @@ const RecipeSlide = ({  title, slideList }) => {
         };
 
         getRecipes();
-    }, [slideList, title]);
+    }, [slideList, title,recipeData]);
 
-    console.log(slideList);
     // console.log(recipeSlide);
+    // console.log(recipeData);
     
     function getRandomTypes(typeArray, count) {
         const randomIndices = numberSet(count, typeArray.length);
@@ -65,11 +77,11 @@ const RecipeSlide = ({  title, slideList }) => {
         }
 
         return [...set];
-    } */
-    console.log(recipeData);
+    }
+    
     return (
-        <h3>Hello</h3>
-       /*  <div>
+        
+        <div>
           {slideList.map((slide, index) => (
             <div key={index}>
               <h3>{slide}</h3>
@@ -93,7 +105,7 @@ const RecipeSlide = ({  title, slideList }) => {
               </div>
             </div>
           ))}
-        </div> */
+        </div>
       );
     
 

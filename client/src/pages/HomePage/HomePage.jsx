@@ -3,11 +3,12 @@ import { fetchRecipes } from "../../utils/serverRequests.js"
 import { RecipeAPIContext } from "../../utils/RecipeAPIContext.jsx";
 import NavBar from "../../components/NavBar/NavBar";
 import Favorites from "../../components/Sliders/User/Favorites/Favorites";
-import RecipeSlide from "../../components/Sliders/RecipeSlide";
 import FamilyGroups from "../../components/Sliders/User/FamilyGroups/FamilyGroups";
+import RecipeSlide from "../../components/Sliders/RecipeSlide";
 
 const HomePage = () => {
     const {recipeData, setRecipeData} = useContext(RecipeAPIContext)
+    const [sliderTypes, setSliderTypes] = useState([]);
     const [areaTypes, setAreaTypes] = useState([]);
     const [categoryTypes, setCategoryTypes] = useState([]);
     const [ingredientTypes, setIngredientTypes] = useState([]);
@@ -22,7 +23,7 @@ const HomePage = () => {
                 setRecipeData(data)
 
                 const recipeSet = new Set();
-                for (const recipe of recipeData) {
+                for (const recipe of data) {
                   if( types === "tag" && recipe[types] != null ){
                      recipeSet.add(...recipe[types]);
                     
@@ -48,18 +49,50 @@ const HomePage = () => {
         }
 
         getSliderTypes("area");
-        /* getSliderTypes("category");
+        getSliderTypes("category");
         getSliderTypes("tag");
-        getSliderTypes("ingredient"); */
+        getSliderTypes("ingredient");
 
-       /*  const typeState = () => {
+        // console.log(recipeData);
+
+        
+
+        typeState();
+    }, [ setRecipeData, setAreaTypes, setCategoryTypes,setIngredientTypes, setTagTypes]);
+
+    function getRandomTypes(typeArray, count) {
+        const randomIndices = numberSet(count, typeArray.length);
+        const randomTypes = [];
+
+        for (const index of randomIndices) {
+            randomTypes.push(typeArray[index]);
+        }
+
+        return randomTypes;
+    }
+
+    function numberSet(desired, max) {
+        // condition makes sure while loop isn't sticky
+        if (max < desired) {
+            desired = max;
+        }
+
+        const set = new Set();
+
+        while (set.size < desired) {
+            set.add(Math.floor(Math.random() * max));
+        }
+
+        return [...set];
+    } 
+
+const typeState = () => {
             try {
                 for (const group of sliderTypes) {
                     const key = Object.keys(group)[0];
                     switch (key) {
                         case "area":
                             setAreaTypes(group[key]);
-
                             break;
                         case "category":
                             setCategoryTypes(group[key]);
@@ -75,10 +108,7 @@ const HomePage = () => {
             } catch (error) {
                 console.error(error.message);
             }
-        }; */
-
-      /*   typeState(); */
-    }, [ setRecipeData]);
+        }; 
 
     return (
         <>
@@ -92,27 +122,27 @@ const HomePage = () => {
                 <RecipeSlide
                     title="area"
                    
-                    // slideList={areaTypes}
+                    slideList={areaTypes}
                 />
                 <h4>Ingredients</h4>
                 <RecipeSlide
-                    title="ingredients"
+                    title="ingredient"
                     
-                    // slideList={ingredientTypes}
+                    slideList={ingredientTypes}
                 />
                 <h4>Category</h4>
 
                 <RecipeSlide
                     title="category"
                    
-                    // slideList={categoryTypes}
+                    slideList={categoryTypes}
                 />
                 
                 <h4>Tags</h4>
                 <RecipeSlide
-                    title="tags"
+                    title="tag"
                     
-                    // slideList={tagTypes}
+                    slideList={tagTypes}
                 />
             </div>
         </>
