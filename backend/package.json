@@ -1,8 +1,12 @@
 {
   "name": "backend",
   "version": "1.0.0",
+<<<<<<< HEAD
   "type": "module",
   "description": "Secret Family Recipes is a recipe sharing web application that allows users to share and discover recipes. It is built using the MERN stack.",
+=======
+  "description": "secret family recipes database and backend",
+>>>>>>> development
   "main": "server.js",
   "scripts": {
     "dev": "nodemon src/server.js",
@@ -19,7 +23,11 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongodb": "^5.4.0",
+<<<<<<< HEAD
     "mongoose": "^7.1.0",
     "node-fetch": "^3.3.1"
+=======
+    "mongoose": "^7.1.0"
+>>>>>>> development
   }
 }
