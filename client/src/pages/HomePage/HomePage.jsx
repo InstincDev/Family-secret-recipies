@@ -40,6 +40,7 @@ const HomePage = () => {
                
                 const randRecipeTypes = types === "ingredient"?getRandomTypes(recipeTypes, 3):getRandomTypes(recipeTypes, 2);
 
+
                 const newTypesObj = { [types]: randRecipeTypes };
 
                 setSliderTypes((sliderTypes) => [...sliderTypes, newTypesObj]);
