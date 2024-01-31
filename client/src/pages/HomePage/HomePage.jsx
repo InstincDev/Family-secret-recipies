@@ -8,7 +8,7 @@ import RecipeSlide from "../../components/Sliders/RecipeSlide";
 
 const HomePage = () => {
     const { recipeData, setRecipeData } = useContext(RecipeAPIContext);
-    const [sliderTypes, setSliderTypes] = useState([]);
+    // const [sliderTypes, setSliderTypes] = useState([]);
     const [areaTypes, setAreaTypes] = useState([]);
     const [categoryTypes, setCategoryTypes] = useState([]);
     const [ingredientTypes, setIngredientTypes] = useState([]);
@@ -66,7 +66,7 @@ const HomePage = () => {
             console.error(error.message);
         }
     };
-
+console.log(tagTypes);
     const getRandomTypes = (typeArray, count) => {
         const randomIndices = numberSet(count, typeArray.length);
         const randomTypes = [];
