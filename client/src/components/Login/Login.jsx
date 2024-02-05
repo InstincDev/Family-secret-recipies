@@ -2,6 +2,12 @@ import React from 'react'
 import "./Login.css"
 
 const Login = () => {
+
+    const google = ()=>{
+        window.open("http://localhost:7575/auth/google", "_self")
+       }
+
+
   return (
     <div className="login">
     <h1 className="loginTitle">Choose a Login Method</h1>
@@ -15,7 +21,7 @@ const Login = () => {
                 />
                 Instagram
             </div>
-            <div className="loginButton google" >
+            <div className="loginButton google" onClick={google} >
                 <img
                     src="https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&w=600"
                     alt=""

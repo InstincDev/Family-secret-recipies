@@ -36,7 +36,7 @@ const RecipeCard = () => {
 
     return (
         <>
-            <NavBar />
+        
             <div>
                 <div>
                     <Link to={"/"}> Back</Link>

@@ -1,8 +1,7 @@
-import { Router as router } from "express"
-import passport from "passport" 
-
-
-const {CLIENT_URL} = process.env
+import { Router } from "express";
+import passport from "passport";
+const router = Router();
+const { CLIENT_URL } = process.env;
 
 router.get("/login/failed", (req, res) => {
     res.status(401).json({ success: false, message: "failure to login" });
@@ -41,4 +40,4 @@ router.get(
     })
 );
 
-module.exports = router;
+export default router;

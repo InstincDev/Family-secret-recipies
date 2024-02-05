@@ -2,12 +2,13 @@ import express from "express";
 import cors from "cors";
 import cookieSession from "cookie-session";
 import passport from "passport";
-import * as dotenv from "dotenv"
+import "dotenv/config"
+import  "./Passport.js" ;
 import Connection from "./database/db.js";
 import mealRouter from "./Routes/newMeal.js";
 import seedRouter from "./Routes/seedDB.js";
 
-dotenv.config();
+import authRouter from "./Routes/auth.js"
 
 const server = express()
 const PORT = process.env.PORT || 7575
@@ -25,13 +26,17 @@ server.use(passport.initialize());
 server.use(passport.session());
 server.use(express.urlencoded({extended:true}))
 server.use(express.json())
-server.use(cors())
+server.use(cors());
 
 // Routes
 
 server.use("/seed", seedRouter);
 server.use("/recipe", mealRouter);
 server.use("/auth", authRouter)
+
+server.get('/health', (req, res) => {
+    res.json({ hello: 'world' })
+    })
 
 // PORT Listen 
 server.listen(PORT, ()=>{
