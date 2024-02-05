@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import RecipeCard from "./components/RecipeCard/RecipeCard.jsx";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import { UserProfilePage } from "./pages/UserProfilePage/UserProfilePage.jsx";
 import "./App.css";
 
@@ -23,6 +24,10 @@ function App() {
                     <Route
                         path="/recipe/:id"
                         element={<RecipeCard/>}
+                    />
+                    <Route
+                        path="/login"
+                        element={<LoginPage/>}
                     />
                     <Route path="/user" element={<UserProfilePage />} />
                 </Routes>
