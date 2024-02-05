@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import RecipeCard from "./components/RecipeCard/RecipeCard.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import { UserProfilePage } from "./pages/UserProfilePage/UserProfilePage.jsx";
 import "./App.css";
+import NavBar from "./components/NavBar/NavBar.jsx";
 
 //ToDo
 // create function for getting types
@@ -16,6 +17,7 @@ function App() {
     return (
         <>
             <BrowserRouter>
+            <NavBar />
                 <Routes>
                     <Route
                         path="/"

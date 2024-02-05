@@ -95,7 +95,6 @@ console.log(tagTypes);
 
     return (
         <>
-            <NavBar />
             <div>
                 {isLoading ? (
                     <p>Prep Recipes...</p>
