@@ -19,7 +19,7 @@ server.use(express.static("../public"));
 server.use(cookieSession(
     {name: "session",
     keys:["recipe"],
-    maxAge: 24*60*60*1000}
+    maxAge: 24*60*60*100}
 ));
 server.use(passport.initialize());
 server.use(passport.session());
@@ -31,6 +31,8 @@ server.use(cors())
 
 server.use("/seed", seedRouter);
 server.use("/recipe", mealRouter);
+server.use("/auth", authRouter)
+
 // PORT Listen 
 server.listen(PORT, ()=>{
     console.log(`Port is cooking on ${PORT}`)

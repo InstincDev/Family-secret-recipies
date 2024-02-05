@@ -24,13 +24,14 @@ function App() {
                         element={<HomePage/>}
                     />
                     <Route
-                        path="/recipe/:id"
-                        element={<RecipeCard/>}
-                    />
-                    <Route
                         path="/login"
                         element={<LoginPage/>}
                     />
+                    <Route
+                        path="/recipe/:id"
+                        element={<RecipeCard/>}
+                    />
+                    
                     <Route path="/user" element={<UserProfilePage />} />
                 </Routes>
             </BrowserRouter>
