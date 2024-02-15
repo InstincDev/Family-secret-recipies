@@ -20,13 +20,17 @@ server.use(express.static("../public"));
 server.use(cookieSession(
     {name: "session",
     keys:["recipe"],
-    maxAge: 24*60*60*100}
+    maxAge: 24*60*60*1000}
 ));
 server.use(passport.initialize());
 server.use(passport.session());
 server.use(express.urlencoded({extended:true}))
 server.use(express.json())
-server.use(cors());
+server.use(cors({
+    origin: "http://localhost:5173",
+    methods: "GET, POST, PUT, DELETE",
+    credentials: true,
+}));
 
 // Routes
 

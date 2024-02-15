@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { RecipeAPIContext } from "../../utils/RecipeAPIContext.jsx";
+import useLocalStorage from "../../utils/useLocalStorage.jsx";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { fetchRecipes } from "../../utils/serverRequests.js"
@@ -8,7 +9,7 @@ import { wrapper, mealList } from "../Sliders/Sliders.module.sass";
 
 const RecipeSlide = ({  title, slideList }) => {
     const {recipeData} = useContext(RecipeAPIContext)
-    const [recipeSlide, setRecipeSlide] = useState([]);
+    const [recipeSlide, setRecipeSlide] = useLocalStorage("recipeSlide"+title,[]);
 
      useEffect(() => {
         const getRecipes = async () => {
@@ -34,7 +35,7 @@ const RecipeSlide = ({  title, slideList }) => {
                     const randomRecipes = getRandomTypes(recipes, 10)
                     return randomRecipes
                 })
-                setRecipeSlide(slides);
+                if(recipeSlide.length == 0){setRecipeSlide(slides);}
                 
             } catch (error) {
                 console.error(error.message);

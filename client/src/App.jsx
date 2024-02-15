@@ -55,7 +55,7 @@ const App = ()=> {
                     />
                     <Route
                         path="/recipe/:id"
-                        element={<RecipeCard/>}
+                        element={user ? <RecipeCard/> : <Navigate to="/login"/>}
                     />
                     
                     <Route path="/user" element={<UserProfilePage />} />

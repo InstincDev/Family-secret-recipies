@@ -61,8 +61,8 @@ a{
     width: 60px;
     height: 34px;
     position: absolute;
-    top: 4.75rem;
-    right: 1.5rem;
+    top: 5.5rem;
+    left: 1.5rem;
     background-color:  #D7C9AA ;
     border-radius: 34px;
     transition: background-color 0.2s ease;

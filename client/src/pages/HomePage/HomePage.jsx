@@ -1,18 +1,23 @@
 import { useContext, useEffect, useState } from "react";
 import { fetchRecipes } from "../../utils/serverRequests.js";
 import { RecipeAPIContext } from "../../utils/RecipeAPIContext.jsx";
+import useLocalStorage from "../../utils/useLocalStorage.jsx";
 import NavBar from "../../components/NavBar/NavBar";
 import Favorites from "../../components/Sliders/User/Favorites/Favorites";
 import FamilyGroups from "../../components/Sliders/User/FamilyGroups/FamilyGroups";
 import RecipeSlide from "../../components/Sliders/RecipeSlide";
 
+
+
+
+
 const HomePage = () => {
     const { recipeData, setRecipeData } = useContext(RecipeAPIContext);
     // const [sliderTypes, setSliderTypes] = useState([]);
-    const [areaTypes, setAreaTypes] = useState([]);
-    const [categoryTypes, setCategoryTypes] = useState([]);
-    const [ingredientTypes, setIngredientTypes] = useState([]);
-    const [tagTypes, setTagTypes] = useState([]);
+    const [areaTypes, setAreaTypes] = useLocalStorage("areaTypes",[]);
+    const [categoryTypes, setCategoryTypes] = useLocalStorage("categoryTypes",[]);
+    const [ingredientTypes, setIngredientTypes] = useLocalStorage("ingredientTypes",[]);
+    const [tagTypes, setTagTypes] = useLocalStorage("tagTypes",[]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -47,11 +52,12 @@ const HomePage = () => {
                 }
             }
 
-            setAreaTypes(getRandomTypes([...areaSet].sort(), 2));
-            setCategoryTypes(getRandomTypes([...categorySet].sort(), 2));
-            setIngredientTypes(getRandomTypes([...ingredientSet].sort(), 3));
-            setTagTypes(getRandomTypes([...tagSet].sort(), 2));
-
+            if(areaTypes.length === 0){
+              setAreaTypes(getRandomTypes([...areaSet].sort(), 2));  
+            }
+            if(categoryTypes.length === 0){setCategoryTypes(getRandomTypes([...categorySet].sort(), 2));}
+            if(ingredientTypes.length === 0){setIngredientTypes(getRandomTypes([...ingredientSet].sort(), 3));}
+            if(tagTypes.length === 0){setTagTypes(getRandomTypes([...tagSet].sort(), 2));}
             // const newTypesObj = {
             //     area: getRandomTypes(areaTypes, 2),
             //     category: getRandomTypes(categoryTypes, 2),
@@ -100,9 +106,11 @@ console.log(tagTypes);
                     <p>Prep Recipes...</p>
                 ) : (
                     <>
-                        {/* <Favorites title="Favorites"  /> */}
+                        {/* <Favorites title="favorites"  /> */}
 
-                        {/* <FamilyGroups title="Family Group"  /> */}
+                        {/* <FamilyGroups title="family"  /> */}
+
+                        {/* <MyRecipes title="myRecipes"  /> */}
 
                         <h4>Area</h4>
                         <RecipeSlide title="area" slideList={areaTypes} />

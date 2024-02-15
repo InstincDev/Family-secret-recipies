@@ -9,10 +9,7 @@ const NavBar = ({ user }) => {
     return (
         <div class="header">
             <h1>Secret Family Recipes</h1>
-            <label class="toggle">
-                <input type="checkbox" />
-                <span class="slider"></span>
-            </label>
+            
             {user ? (
                 <ul className="list">
                     <li className="listItem">
@@ -32,6 +29,11 @@ const NavBar = ({ user }) => {
                     Login
                 </Link>
             )}
+            <label class="toggle">
+                <input type="checkbox" />
+                <span class="slider"></span>
+            </label>
+            
         </div>
     );
 };
