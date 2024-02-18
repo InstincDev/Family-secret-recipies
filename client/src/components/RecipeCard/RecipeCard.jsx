@@ -8,7 +8,6 @@ import {
     ingredients,
     comments,
 } from "./RecipeCard.module.sass";
-import NavBar from "../../components/NavBar/NavBar";
 import { fetchRecipes } from "../../utils/serverRequests.js";
 
 const RecipeCard = ({ recipeList }) => {
@@ -19,7 +18,6 @@ const RecipeCard = ({ recipeList }) => {
         const getRecipes = async()=>{
             const recipes = await fetchRecipes();
             const data = recipes.data;
-            console.log(data);
             setRecipe(data.filter((recipes) => recipes._id === id));
         }
         getRecipes()
@@ -28,6 +26,7 @@ const RecipeCard = ({ recipeList }) => {
     console.log(recipe);
     return (
         <>
+            <Link className="link" to={"/"}>Back</Link>
             {recipe.map((recipes, i) => (
                 <div key={i}>
                     <h1>{recipes.meal}</h1>
