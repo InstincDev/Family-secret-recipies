@@ -1,0 +1,20 @@
+XYZ Page:
+	Page & URL for the XYZ Entity
+Owned XYZ:
+	XYZ Entity that is authored/owned by the current User
+XYZ Owner:
+	User that authored/owns the XYZ Entity
+Target XYZ:
+	XYZ Entity that is the subject of the current Action
+XYZ Member:
+	User that is a member of the XYZ Entity
+Guest:
+	Unauthenticated Browser
+User:
+	Generaly can do everything a Guest can do
+	Authenticated Browser
+Visible Recipe:
+	Recipe that can be seen due to one of the following being true:
+		- Recipe author is the current User
+		- Recipe visibility is Public
+		- User is a member of a Group that the Recipe has been made visible to

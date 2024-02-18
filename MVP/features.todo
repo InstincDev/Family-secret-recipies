@@ -1,0 +1,111 @@
+Favoriting:
+	Favorite/Unfavorite a Recipe:
+		☐ User can view their favorited-status
+			☐ Button/Icon to toggle state will communicate current state
+		☐ User can Favorite a recipe
+		☐ User can un-Favorite a recipe
+	☐ User can Favorite/Unfavorite a Recipe from the Recipe Page (2d)
+	☐ User can Favorite/Unfavorite a Recipe from any RecipeCard (1d)
+	☐ User can view all of their favorited Recipes from the Dashboard (1d)
+
+	☐ Guest can view the count of times a Recipe has been favorited from the Recipe Page
+
+View All Recipes within RecipeSlide component (2d):
+	☐ Guest will be shown a View All card if there are more then 10 Recipes to render
+	☐ Upon clicking the View All card, the RecipeSlide will show all available Recipes
+
+Reshuffle Dashboard (2d):
+	☐ Guest can press a button to reshuffle the dashboard
+
+Comments (10d):
+	From the Recipe Page:
+		☐ User can make a Comment
+		☐ User can delete their own Comments
+		☐ Guest can see the username, date, and content of all Comments
+
+Profile Page (7d):
+	☐ User can visit the /user/USERNAME page of any Target User
+		☐ User is presented with a "Invalid Username" message if the Target User does not exist
+	☐ User can see all of the Visible Recipes of the Target User
+
+Custom Recipe (14d):
+	Definitions:
+		Owned Custom Recipe:
+			Recipe authored by the current User
+	☐ User can create a Custom Recipe, accepting:
+		- Title
+		- Ingredients (list of strings)
+		- Category
+		- Tag
+		- Directions (multi-line string)
+		- Visibility (Public, Private)
+	☐ User can update an Owned Custom Recipe, accepting same fields during creation
+	☐ User can delete an Owned Custom Recipe
+		☐ User is prompted to confirm deletion
+	☐ Guest can see all Public Custom Recipes from the Dashboard alongside other Recipes
+
+	☐ User can view all of their Owned Custom Recipes from the Dashboard  (2d)
+
+Profile Page with Recipes (2d):
+	☐ User can see all of the Visible Recipes Owned by the Target User
+
+Custom Recipe with Image (3d):
+	☐ User can upload an image for a Custom Recipe during creation
+	☐ User can update the image for a Custom Recipe during update
+		☐ Previous image is deleted/replaced
+	☐ User image is deleted when the Custom Recipe is deleted
+
+Group Creation (7d):
+	☐ User can create a Group, accepting:
+		- Title
+	☐ Group Owner can update Group, accepting same fields during creation
+	☐ User can visit /group/GROUP_ID to view the Target Group
+
+Group Deletion (3d):
+	☐ Group Owner can delete Group
+		☐ Group Owner is prompted to confirm deletion
+
+Group Member List (2d):
+	☐ Group Member can view a list of all Members of the Group
+
+Group Member Removal (3d):
+	☐ Group Owner can remove a Member from the Group
+		☐ Group Owner is prompted to confirm removal
+
+Group Leaving (3d):
+	☐ Group Member can leave the Group
+		☐ Group Member is prompted to confirm leaving
+
+Outbound Group Invites (10d):
+	☐ Group Owner can invite another User to join a Group (7d)
+	☐ Group Owner can view all pending invites on the Group Page (2d)
+Inbound Group Invites (6d):
+	☐ User can see number of pending invites in NavBar (1d)
+	☐ User can see list of pending invites on own Profile Page (2d)
+		☐ User can reject an invite (1d)
+		☐ User can accept an invite (2d)
+
+Custom Recipe with Group (7d):
+	☐ User can select which (if any) Groups a Custom Recipe is visible to during creation
+	☐ User can update which (if any) Groups a Custom Recipe is visible to during update
+
+Group Recipes on Group Page(3d):
+	☐ Group Member can view all of the Recipes visible to the Group
+
+Profile Page with Groups (2d):
+	If the Target User is the current User:
+		☐ User can see all joined groups
+	Otherwise:
+		☐ User can see all groups both they and the Target User are members of
+	☐ Groups the user is an owner of are marked as such
+
+Group Recipes on Dashboard (4d):
+	☐ Group Member can view all Recipes visible to joined Groups on the Dashboard
+		☐ Groups are sorted alphabetically
+			☐ Recipes within a RecipeSlide are sorted by date, most recent first
+
+UI Cleanup (7d):
+	☐ Evaluate and improve the UI/UX of the application
+
+Deploy to Cyclic (2d):
+	☐ Deploy the application to the Cyclic server

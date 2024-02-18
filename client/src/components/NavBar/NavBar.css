@@ -1,8 +1,8 @@
 .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 	background-color: #7EBDC3;
 	color: #fff;
 	text-align: center;
@@ -21,8 +21,8 @@
   
   .slider {
     position: absolute;
-    top: 4.75rem;
-    right: 1.5rem;
+    top: 5.5rem;
+    left: 1.5rem;
     background-color:  #D7C9AA ;
     border-radius: 34px;
     transition: background-color 0.2s ease;
@@ -39,6 +39,28 @@
     border-radius: 50%;
     transition: transform 0.2s ease;
   }
+
+  .list{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    position: absolute;
+    top: 5.5rem;
+    right: 1rem;
+}
+
+.listItem{
+    margin-right: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.avatar{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
   
   input:checked + .slider {
     background-color: #D7996d;
