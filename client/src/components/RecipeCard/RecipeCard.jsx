@@ -9,19 +9,25 @@ import {
     comments,
 } from "./RecipeCard.module.sass";
 import NavBar from "../../components/NavBar/NavBar";
-import { useEffect, useState } from "react";
+import { fetchRecipes } from "../../utils/serverRequests.js";
 
 const RecipeCard = ({ recipeList }) => {
     const { id } = useParams();
     const [recipe, setRecipe] = useState([]);
 
     useEffect(() => {
-        setRecipe(recipeList.filter((recipes) => recipes._id === id));
+        const getRecipes = async()=>{
+            const recipes = await fetchRecipes();
+            const data = recipes.data;
+            console.log(data);
+            setRecipe(data.filter((recipes) => recipes._id === id));
+        }
+        getRecipes()
+        
     }, []);
     console.log(recipe);
     return (
         <>
-            <NavBar />
             {recipe.map((recipes, i) => (
                 <div key={i}>
                     <h1>{recipes.meal}</h1>
@@ -48,7 +54,7 @@ const RecipeCard = ({ recipeList }) => {
                                 </ul>
                             </section>
                         </aside>
-                        <small>tags: <ul>{recipes.tag.map((tag,i)=>(<li key={`tag${i}`}>{tag}</li>))}</ul></small>
+                        <small>tags: <ul>{recipes.tag? recipes.tag.map((tag,i)=>(<li key={`tag${i}`}>{tag}</li>)): null}</ul></small>
                     </div>
                     <div className={directions}>
                         <section>
