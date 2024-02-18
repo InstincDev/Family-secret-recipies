@@ -7,9 +7,9 @@ import { RecipeProvider } from "./utils/RecipeAPIContext.jsx";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <RecipeProvider>
       <App />
     </RecipeProvider>
-  </React.StrictMode>,
+  /* </React.StrictMode>, */
 )
