@@ -11,7 +11,7 @@
   -webkit-text-size-adjust: 100%;
 }
 
-<<<<<<< HEAD:client/src/index.css
+
 a {
   color: #320b1a;
   text-decoration: none;
@@ -28,18 +28,13 @@ body {
 	padding: 0;
 	background-color: #D7C9AA;
 }
-=======
-a{
-  color: #320b1a;
-  text-decoration: none;
-}
->>>>>>> development:sample/style.css
+
 
 .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 	background-color: #7EBDC3;
 	color: #fff;
 	text-align: center;
@@ -61,8 +56,8 @@ a{
     width: 60px;
     height: 34px;
     position: absolute;
-    top: 5.5rem;
-    left: 1.5rem;
+    top: 4.75rem;
+    right: 1.5rem;
     background-color:  #D7C9AA ;
     border-radius: 34px;
     transition: background-color 0.2s ease;
@@ -120,8 +115,7 @@ flex-wrap: wrap;
 padding: 20px;
 justify-content: center;
 }
-<<<<<<< HEAD:client/src/index.css
-=======
+
 .pin {
 	background-color: #D7996D;
 	color: #320b1a;
@@ -322,4 +316,3 @@ body.dark-mode .header{
     background-color: #D7996D;
     color: #CE5D51;
   }
->>>>>>> development:sample/style.css

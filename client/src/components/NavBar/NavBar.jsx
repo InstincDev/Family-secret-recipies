@@ -33,8 +33,7 @@ const NavBar = ({ user }) => {
                 <input type="checkbox" />
                 <span class="slider"></span>
             </label>
-            
         </div>
-    );
-};
-export default NavBar;
+    )
+} 
+export default NavBar
