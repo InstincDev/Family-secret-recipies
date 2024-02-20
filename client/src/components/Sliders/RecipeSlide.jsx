@@ -7,6 +7,7 @@ import { fetchRecipes } from "../../utils/serverRequests.js";
 import RecipePin from "../RecipePin/RecipePin";
 import { wrapper, mealList } from "../Sliders/Sliders.module.sass";
 
+
 const RecipeSlide = ({ title, slideList }) => {
   const { recipeData } = useContext(RecipeAPIContext);
   const [showAll, setShowAll] = useState(false);
