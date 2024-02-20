@@ -9,7 +9,7 @@ import { wrapper, mealList } from "../Sliders/Sliders.module.sass";
 
 const RecipeSlide = ({  title, slideList }) => {
     const {recipeData} = useContext(RecipeAPIContext)
-    const [recipeSlide, setRecipeSlide] = useLocalStorage("recipeSlide"+title,[]);
+    const [recipeSlide, setRecipeSlide] = useLocalStorage("recipeSlide"+title,[])
 
      useEffect(() => {
         const getRecipes = async () => {
