@@ -29,6 +29,20 @@ mealRouter.get("/",async (req,res) =>{
         console.log(error.message);
         res.status(400).send(error.message)
     }
-})
+});
 
+mealRouter.post("/:mealId/favorite", async (req,res) =>{
+    const {mealId} = req.params;
+    try {
+        await Connection();
+        const meal = await Meal.findById(mealId)
+        meal.favorites++
+        await meal.save();
+        res.json({success: true, message: "Meal favorited"})
+
+    } catch (error) {
+        console.log(error.message);
+        res.status(400).send(error.message)
+    }
+})
 export default mealRouter;
