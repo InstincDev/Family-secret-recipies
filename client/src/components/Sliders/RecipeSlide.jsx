@@ -13,11 +13,13 @@ import { wrapper, mealList } from "../Sliders/Sliders.module.sass";
 
 const RecipeSlide = ({ title, slideList }) => {
   const { recipeData } = useContext(RecipeAPIContext);
-  const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useState([]);
   const [recipeSlide, setRecipeSlide] = useLocalStorage(
       "recipeSlide" + title,
       []
   );
+ const visableRecipeSlide = recipeSlide.map((recipes, index) => showAll.includes(index) ? recipes : recipes.slice(0, 10))
+
 
   useEffect(() => {
       const getRecipes = async () => {
@@ -38,13 +40,14 @@ const RecipeSlide = ({ title, slideList }) => {
                           return recipe[title] === slide;
                       }
                   });
+                
+                  const shownRecipes = getRandomTypes(recipes, recipes.length)
+                      
 
-                  const shownRecipes = !showAll
-                      ? getRandomTypes(recipes, recipes.length)
-                      : recipes;
 
                   return shownRecipes;
               });
+              
               if (recipeSlide.length == 0) {
                   setRecipeSlide(slides);
               }
@@ -84,8 +87,8 @@ const RecipeSlide = ({ title, slideList }) => {
 
       return [...set];
   }
-  function handleShowAll() {
-      setShowAll(!showAll);
+  function handleShowAll(i) {
+      setShowAll([...showAll,i]);
   }
   return (
       <div>
@@ -100,16 +103,16 @@ const RecipeSlide = ({ title, slideList }) => {
                               drag: "free",
                           }}
                       >
-                          {recipeSlide[index] &&
-                              recipeSlide[index].map((recipe, i) => (
-                                  <SplideSlide
+                          {visableRecipeSlide[index] &&
+                              visableRecipeSlide[index].map((recipe, i) => (
+                                 <SplideSlide
                                       key={`recipeList-${i}`}
                                       
                                   >
                                       <div className={mealList}>
-                                          {console.log(recipeSlide[index].length)}
+                                          {console.log(visableRecipeSlide[index].length)}
                                          
-                                         {i <= 10 && !showAll &&
+                                         {
                                           <RecipePin
                                               key={`recipeList-${slide}-${i}`}
                                               id={recipe._id}
@@ -117,27 +120,17 @@ const RecipeSlide = ({ title, slideList }) => {
                                               description={recipe.category}
                                               image={recipe.image}
                                           />}
-                                            {i === 10 && !showAll ? <button
-                                                      onClick={handleShowAll} >
-                                                      Show All
-                                                  </button> : <button
-                                                      onClick={handleShowAll} style={{display: "none"}}>
-                                                      Show All
-                                                  </button>}
+                                            
 
          
-                                            {showAll&&<RecipePin
-                                              key={`recipeList-${slide}-${i}`}
-                                              id={recipe._id}
-                                              meal={recipe.meal}
-                                              description={recipe.category}
-                                              image={recipe.image}
-                                          /> 
-                                          }
                                       </div>
                                       
                                   </SplideSlide>
                               ))}
+                              { !showAll.includes(index) && visableRecipeSlide[index].length!= recipeSlide[index].length? <SplideSlide> <button
+                                                      onClick={()=>{handleShowAll(index)}} >
+                                                      Show All
+                                                  </button></SplideSlide> : null}
                       </Splide>
                   </div>
               </div>
