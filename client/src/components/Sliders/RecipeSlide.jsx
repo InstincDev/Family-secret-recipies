@@ -7,6 +7,9 @@ import { fetchRecipes } from "../../utils/serverRequests.js";
 import RecipePin from "../RecipePin/RecipePin";
 import { wrapper, mealList } from "../Sliders/Sliders.module.sass";
 
+//TODO:
+    // Render Show Less button at end of full slides
+
 
 const RecipeSlide = ({ title, slideList }) => {
   const { recipeData } = useContext(RecipeAPIContext);
@@ -35,8 +38,6 @@ const RecipeSlide = ({ title, slideList }) => {
                           return recipe[title] === slide;
                       }
                   });
-
-                  console.log(recipes.length);
 
                   const shownRecipes = !showAll
                       ? getRandomTypes(recipes, recipes.length)
@@ -116,19 +117,23 @@ const RecipeSlide = ({ title, slideList }) => {
                                               description={recipe.category}
                                               image={recipe.image}
                                           />}
-                                            {i === 10 && <button
-                                                      onClick={handleShowAll}>
+                                            {i === 10 && !showAll ? <button
+                                                      onClick={handleShowAll} >
+                                                      Show All
+                                                  </button> : <button
+                                                      onClick={handleShowAll} style={{display: "none"}}>
                                                       Show All
                                                   </button>}
 
-                                            {showAll && 
-                                            <RecipePin
+         
+                                            {showAll&&<RecipePin
                                               key={`recipeList-${slide}-${i}`}
                                               id={recipe._id}
                                               meal={recipe.meal}
                                               description={recipe.category}
                                               image={recipe.image}
-                                          />}
+                                          /> 
+                                          }
                                       </div>
                                       
                                   </SplideSlide>
