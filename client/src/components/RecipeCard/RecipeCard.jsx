@@ -9,6 +9,7 @@ import {
     comments,
 } from "./RecipeCard.module.sass";
 import { fetchRecipes } from "../../utils/serverRequests.js";
+import FavoriteButton from "../FavoriteButton/FavoriteButton.jsx";
 
 const RecipeCard = ({ recipeList }) => {
     const { id } = useParams();
@@ -54,6 +55,7 @@ const RecipeCard = ({ recipeList }) => {
                             </section>
                         </aside>
                         <small>tags: <ul>{recipes.tag? recipes.tag.map((tag,i)=>(<li key={`tag${i}`}>{tag}</li>)): null}</ul></small>
+                        <FavoriteButton />
                     </div>
                     <div className={directions}>
                         <section>

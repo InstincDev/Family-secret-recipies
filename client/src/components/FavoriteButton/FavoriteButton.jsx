@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { fetchRecipes, fetchFavorites  } from "../../utils/serverRequests.js";
+import { FaHeart } from "react-icons/fa";
+import { useParams } from 'react-router';
 
-const FavoriteButton = (id) => {
-  const [favorited, setFavorited] = useState(false);
-  const [favorites, setFavorites] = useState(0)
-  
+const FavoriteButton = () => {
+    const{id} = useParams()
+    const [favorited, setFavorited] = useState(false);
+    const [favorites, setFavorites] = useState(0)
+
   useEffect(()=>{
     const getFavorites = async()=>{
         const recipes = await fetchRecipes();
@@ -16,11 +20,22 @@ const FavoriteButton = (id) => {
     getFavorites()
   }, [id])
     
-    console.log(favorites);
-    console.log(favorited);
+    
+    const handleFavorite = async ()=>{
+        if(favorited){
+            await fetchFavorites(id)
+            setFavorited(true);
+            setFavorites(favorites += 1)
+            console.log(favorites);
+            console.log(favorited);
+  
+        }
+    }
     
     return (
-    <div>FavoriteButton</div>
+    <div>
+        <button onClick={handleFavorite}><FaHeart /></button>
+        </div>
   )
 }
 

@@ -8,3 +8,8 @@ export const fetchRecipes = async () => {
     return response;
     // TODO - randomize data
 };
+
+export const fetchFavorites = async (id)=>{
+    const response = axios.post(URL+'/'+id+'/favorite')
+    return response
+}
