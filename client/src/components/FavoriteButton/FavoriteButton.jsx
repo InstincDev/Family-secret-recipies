@@ -7,8 +7,8 @@ import { useParams } from 'react-router';
   // Add Favorites button to recipe pins
   // Remove Favorite from Apple Fritter ect.
 
-const FavoriteButton = () => {
-    const{id} = useParams()
+const FavoriteButton = ({id}) => {
+console.log(id);
     const [favorited, setFavorited] = useState(false);
     const [favorites, setFavorites] = useState(0)
 

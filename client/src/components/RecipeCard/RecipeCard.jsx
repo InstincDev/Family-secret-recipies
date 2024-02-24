@@ -55,7 +55,7 @@ const RecipeCard = ({ recipeList }) => {
                             </section>
                         </aside>
                         <small>tags: <ul>{recipes.tag? recipes.tag.map((tag,i)=>(<li key={`tag${i}`}>{tag}</li>)): null}</ul></small>
-                        <FavoriteButton />
+                        <FavoriteButton id = {id}/>
                     </div>
                     <div className={directions}>
                         <section>
