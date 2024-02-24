@@ -33,17 +33,17 @@ const RecipeCard = ({ recipeList }) => {
                     <h1>{recipes.meal}</h1>
                     
                     <div className={recipeCard}>
-                        <section class={title}>
+                        <section className={title}>
                             <h3>Created By: {recipes.createdBy}</h3>
                             <div>
                                 <span>{recipes.category}</span> - <span>{recipes.area}</span>
                             </div>
                             
                         </section>
-                        <aside class={recipeInfo}>
+                        <aside className={recipeInfo}>
                             <img src={recipes.image} alt="Placeholder Image" />
 
-                            <section class={ingredients}>
+                            <section className={ingredients}>
                                 <h3>Ingredients</h3>
                                 <ul>
                                     {recipes.ingredient.map((inge, i) => (
@@ -63,7 +63,7 @@ const RecipeCard = ({ recipeList }) => {
                             <p>{recipes.instructions}</p>
                         </section>
 
-                        <section class={comments}>
+                        <section className={comments}>
                             <h3>Comments</h3>
                             <ul>
                                 <li>
