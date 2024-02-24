@@ -13,3 +13,8 @@ export const fetchFavorites = async (id)=>{
     const response = axios.post(URL+'/'+id+'/favorite')
     return response
 }
+
+export const fetchUnfavorites = async (id)=>{
+    const response = axios.post(URL+'/'+id+'/unfavorite')
+    return response
+}

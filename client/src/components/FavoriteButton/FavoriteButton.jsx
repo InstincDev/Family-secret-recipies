@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { fetchRecipes, fetchFavorites  } from "../../utils/serverRequests.js";
-import { FaHeart } from "react-icons/fa";
+import { fetchRecipes, fetchFavorites, fetchUnfavorites  } from "../../utils/serverRequests.js";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useParams } from 'react-router';
+
+//TODO
+  // Add Favorites button to recipe pins
+  // Remove Favorite from Apple Fritter ect.
 
 const FavoriteButton = () => {
     const{id} = useParams()
@@ -12,29 +16,37 @@ const FavoriteButton = () => {
     const getFavorites = async()=>{
         const recipes = await fetchRecipes();
         const data = recipes.data;
-        
-        setFavorited(data.filter((recipes) => recipes._id === id));
+        const recipe = data.find((recipes) => recipes._id === id)
+        console.log(recipe.favorites);
+        setFavorited(recipe.favorites > 0);
 
-        setFavorites(data.filter((recipes) => recipes._id === id));
+        setFavorites(recipe.favorites);
     }
     getFavorites()
   }, [id])
     
     
-    const handleFavorite = async ()=>{
-        if(favorited){
+    const handleFavorite = async ()=>{     
             await fetchFavorites(id)
             setFavorited(true);
-            setFavorites(favorites += 1)
-            console.log(favorites);
-            console.log(favorited);
-  
-        }
+            setFavorites(favorites + 1)
     }
-    
+    const handleUnfavorite = async ()=>{
+          await fetchUnfavorites(id)
+          setFavorited(false)
+          setFavorites(favorites - 1)
+  }
+
+    console.log(favorites);
+    console.log(favorited);
+
     return (
     <div>
-        <button onClick={handleFavorite}><FaHeart /></button>
+        {favorited ? <button onClick={handleUnfavorite}><FaRegHeart /></button> : <button onClick={handleFavorite}><FaHeart /></button>  
+        }
+        
+       
+        {favorites}
         </div>
   )
 }
