@@ -34,14 +34,15 @@ mealRouter.get("/",async (req,res) =>{
 mealRouter.post("/:mealId/favorite", async (req,res) =>{
     const {mealId} = req.params;
     const user = req.user
-    console.log(req.user);
     try {
         await Connection();
         const meal = await Meal.findById(mealId)
-        meal.favorites++
-        await meal.save();
+        if(user && !meal.users.includes(user.id)){
+            meal.users.push(user.id)
+            meal.favorites++
+            await meal.save();
         res.json({success: true, message: "Meal favorited"})
-
+        }else{ console.log("already here");}
     } catch (error) {
         console.log(error.message);
         res.status(400).send(error.message)
