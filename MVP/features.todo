@@ -1,18 +1,24 @@
 Favoriting:
 	Favorite/Unfavorite a Recipe:
-		☐ User can view their favorited-status
-			☐ Button/Icon to toggle state will communicate current state
-		☐ User can Favorite a recipe
-		☐ User can un-Favorite a recipe
-	☐ User can Favorite/Unfavorite a Recipe from the Recipe Page (2d)
-	☐ User can Favorite/Unfavorite a Recipe from any RecipeCard (1d)
-	☐ User can view all of their favorited Recipes from the Dashboard (1d)
+		✔ User can view their favorited-status
+			✔ Button/Icon to toggle state will communicate current state
+		✔ User can Favorite a recipe
+		✔ User can un-Favorite a recipe
+	✔ User can Favorite/Unfavorite a Recipe from the Recipe Page (2d)
+	✔ User can Favorite/Unfavorite a Recipe from any RecipeCard (1d)
 
-	☐ Guest can view the count of times a Recipe has been favorited from the Recipe Page
+	✔ Guest can view the count of times a Recipe has been favorited from the Recipe Page
 
 View All Recipes within RecipeSlide component (2d):
-	☐ Guest will be shown a View All card if there are more then 10 Recipes to render
-	☐ Upon clicking the View All card, the RecipeSlide will show all available Recipes
+	✔ Guest will be shown a View All card if there are more then 10 Recipes to render
+	✔ Upon clicking the View All card, the RecipeSlide will show all available Recipes
+
+Refactor Favorites to keep track of users (2d):
+	☐ Favorite status of a Recipe will be accurate to the current User
+		☐ Accomplished by the Recipe model keeping track of the User IDs that have favorited it
+
+FavoitesList (1d):
+	☐ User can view all of their favorited Recipes from the Dashboard (1d)
 
 Reshuffle Dashboard (2d):
 	☐ Guest can press a button to reshuffle the dashboard

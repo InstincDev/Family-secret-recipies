@@ -9,8 +9,9 @@ const mealSchema = new Schema({
     instructions: {type:String, required: true},
     image: {type:String },
     tag: {type:[String]},
-    ingredient:{type: [ingredientSchema]},
-    favorites: {type: Number, default: 0},
+    ingredient:{type:[ingredientSchema]},
+    favorites: {type:Number, default: 0},
+    users: {type:[String]},
     createdBy: {type:String}
 });
 

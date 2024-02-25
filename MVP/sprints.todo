@@ -1,42 +1,47 @@
 01 - 02-17 -> 02-24:
-	☐ Favoriting (5d)
-	☐ View All Recipes within RecipeSlide component (2d)
+	✔ Favoriting (5d)
+	✔ View All Recipes within RecipeSlide component (2d)
 02 - 02-24 -> 03-02:
+	☐ Refactor Favorites to keep track of users (2d)
+	☐ FavoitesList (1d)
+03 - 03-02 -> 03-09:
+	☐ Nothing
+04 - 03-09 -> 03-16:
 	☐ Reshuffle Dashboard (2d)
 	☐ Comments (4d)
-03 - 03-02 -> 03-09:
-	☐ Comments (6d)
-04 - 03-09 -> 03-16:
-	☐ Profile Page (7d)
 05 - 03-16 -> 03-23:
-	☐ Custom Recipe (7d)
+	☐ Comments (6d)
 06 - 03-23 -> 03-30:
-	☐ Custom Recipe (7d)
+	☐ Profile Page (7d)
 07 - 03-30 -> 04-06:
+	☐ Custom Recipe (7d)
+08 - 04-06 -> 04-13:
+	☐ Custom Recipe (7d)
+09 - 04-13 -> 04-20:
 	☐ Profile Page with Recipes (2d)
 	☐ Custom Recipe with Image (3d)
-08 - 04-06 -> 04-13:
+10 - 04-20 -> 04-27:
 	☐ Group Creation (7d)
-09 - 04-13 -> 04-20:
+11 - 04-27 -> 05-04:
 	☐ Group Deletion (3d)
 	☐ Group Member List (2d)
-10 - 04-20 -> 04-27:
+12 - 05-04 -> 05-11:
 	☐ Group Member Removal (3d)
 	☐ Group Leaving (3d)
-11 - 04-27 -> 05-04:
-	☐ Outbound Group Invites (5d)
-12 - 05-04 -> 05-11:
-	☐ Outbound Group Invites (5d)
 13 - 05-11 -> 05-18:
-	☐ Inbound Group Invites (6d)
+	☐ Outbound Group Invites (5d)
 14 - 05-18 -> 05-25:
-	☐ Custom Recipe with Group (7d)
+	☐ Outbound Group Invites (5d)
 15 - 05-25 -> 06-01:
+	☐ Inbound Group Invites (6d)
+16 - 06-01 -> 06-08:
+	☐ Custom Recipe with Group (7d)
+17 - 06-08 -> 06-15:
 	☐ Group Recipes on Group Page (3d)
 	☐ Profile Page with Groups (2d)
-16 - 06-01 -> 06-08:
-	☐ Group Recipes on Dashboard (4d)
-17 - 06-08 -> 06-15:
-	☐ UI Cleanup (7d)
 18 - 06-15 -> 06-22:
+	☐ Group Recipes on Dashboard (4d)
+19 - 06-22 -> 06-29:
+	☐ UI Cleanup (7d)
+20 - 06-29 -> 07-06:
 	☐ Deploy to Cyclic (2d)
