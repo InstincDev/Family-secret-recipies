@@ -33,6 +33,8 @@ mealRouter.get("/",async (req,res) =>{
 
 mealRouter.post("/:mealId/favorite", async (req,res) =>{
     const {mealId} = req.params;
+    const user = req.user
+    console.log(req.user);
     try {
         await Connection();
         const meal = await Meal.findById(mealId)

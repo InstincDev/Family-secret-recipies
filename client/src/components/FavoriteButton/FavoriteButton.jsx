@@ -22,7 +22,6 @@ const FavoriteButton = ({id}) => {
     getFavorites()
   }, [id])
     
-    
     const handleFavorite = async ()=>{     
             await fetchFavorites(id)
             setFavorited(true);

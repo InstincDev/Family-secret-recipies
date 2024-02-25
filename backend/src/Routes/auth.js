@@ -9,6 +9,7 @@ router.get("/login/failed", (req, res) => {
 
 router.get("/login/success", (req, res) => {
     if (req.user) {
+        console.log(req.user);
         res.status(200).json({
             success: true,
             message: "successful login",

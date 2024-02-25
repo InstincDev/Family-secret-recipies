@@ -10,11 +10,20 @@ export const fetchRecipes = async () => {
 };
 
 export const fetchFavorites = async (id)=>{
-    const response = axios.post(URL+'/'+id+'/favorite')
+  
+    const response = axios.post(URL+'/'+id+'/favorite',undefined,{   
+        withCredentials: true,
+        headers:{
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        }
+    })
     return response
 }
 
 export const fetchUnfavorites = async (id)=>{
-    const response = axios.post(URL+'/'+id+'/unfavorite')
+    const response = await axios.post(URL+'/'+id+'/unfavorite',{
+       
+    })
     return response
 }
