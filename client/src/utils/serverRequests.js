@@ -22,8 +22,12 @@ export const fetchFavorites = async (id)=>{
 }
 
 export const fetchUnfavorites = async (id)=>{
-    const response = await axios.post(URL+'/'+id+'/unfavorite',{
-       
+    const response = axios.post(URL+'/'+id+'/unfavorite',undefined,{
+       withCredentials: true,
+       headers:{
+            Accept: "application/json",
+            "Content-Type": "application/json",
+       }
     })
     return response
 }

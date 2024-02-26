@@ -37,12 +37,14 @@ mealRouter.post("/:mealId/favorite", async (req,res) =>{
     try {
         await Connection();
         const meal = await Meal.findById(mealId)
+        
         if(user && !meal.users.includes(user.id)){
             meal.users.push(user.id)
             meal.favorites++
             await meal.save();
+            
         res.json({success: true, message: "Meal favorited"})
-        }else{ console.log("already here");}
+        }
     } catch (error) {
         console.log(error.message);
         res.status(400).send(error.message)
@@ -51,13 +53,17 @@ mealRouter.post("/:mealId/favorite", async (req,res) =>{
 
 mealRouter.post("/:mealId/unfavorite", async (req,res) =>{
     const {mealId} = req.params;
+    const user = req.user
     try {
         await Connection();
         const meal = await Meal.findById(mealId)
-        meal.favorites--
-        await meal.save();
-        res.json({success: true, message: "Meal unfavorited"})
-
+        
+        if(user && meal.users.includes(user.id)){
+            meal.users = meal.users.filter(elem => elem !== user.id )
+            meal.favorites--
+            await meal.save();
+            res.json({success: true, message: "Meal unfavorited"})
+        }
     } catch (error) {
         console.log(error.message);
         res.status(400).send(error.message)
