@@ -18,7 +18,7 @@ const RecipeSlide = ({ title, slideList }) => {
       "recipeSlide" + title,
       []
   );
- const visableRecipeSlide = recipeSlide.map((recipes, index) => showAll.includes(index) ? recipes : recipes.slice(0, 10))
+ const visibleRecipeSlide = recipeSlide.map((recipes, index) => showAll.includes(index) ? recipes : recipes.slice(0, 10))
 
 
   useEffect(() => {
@@ -103,14 +103,14 @@ const RecipeSlide = ({ title, slideList }) => {
                               drag: "free",
                           }}
                       >
-                          {visableRecipeSlide[index] &&
-                              visableRecipeSlide[index].map((recipe, i) => (
+                          {visibleRecipeSlide[index] &&
+                              visibleRecipeSlide[index].map((recipe, i) => (
                                  <SplideSlide
                                       key={`recipeList-${i}`}
                                       
                                   >
                                       <div className={mealList}>
-                                          {console.log(visableRecipeSlide[index].length)}
+                                          {console.log(visibleRecipeSlide[index].length)}
                                          
                                          {
                                           <RecipePin
@@ -127,7 +127,7 @@ const RecipeSlide = ({ title, slideList }) => {
                                       
                                   </SplideSlide>
                               ))}
-                              { !showAll.includes(index) && visableRecipeSlide[index].length!= recipeSlide[index].length? <SplideSlide> <button
+                              { !showAll.includes(index) && visibleRecipeSlide[index].length!= recipeSlide[index].length? <SplideSlide> <button
                                                       onClick={()=>{handleShowAll(index)}} >
                                                       Show All
                                                   </button></SplideSlide> : null}
