@@ -68,7 +68,7 @@ const HomePage = ({ user }) => {
             if(categoryTypes.length === 0){setCategoryTypes(getRandomTypes([...categorySet].sort(), 2));}
             if(ingredientTypes.length === 0){setIngredientTypes(getRandomTypes([...ingredientSet].sort(), 3));}
             if(tagTypes.length === 0){setTagTypes(getRandomTypes([...tagSet].sort(), 2));}
-            if(favoriteTypes.length == 0){setFavoriteTypes(favoritesSet)}
+            if(favoriteTypes.length !== favoritesSet.length){setFavoriteTypes(favoritesSet)}
             // const newTypesObj = {
             //     area: getRandomTypes(areaTypes, 2),
             //     category: getRandomTypes(categoryTypes, 2),

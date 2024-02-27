@@ -11,7 +11,7 @@ import { wrapper, mealList } from "../../../Sliders/Sliders.module.sass";
 
 const Favorites = ({ recipeList, title }) => {
     
-    console.log(recipeList);
+
     const [showAll, setShowAll] = useState([]);
     const [recipeSlide, setRecipeSlide] = useLocalStorage(
         "recipeSlide" + title,
@@ -19,10 +19,10 @@ const Favorites = ({ recipeList, title }) => {
     );
 
 
-    return ( 
-   
+    
+   return(
         <div >
-          <h3>{title}</h3>
+         
              <Splide options={{perPage: 4, pagination: false, drag: 'free'}}>
                 {recipeList &&
                     recipeList.map((recipe, i) => (
