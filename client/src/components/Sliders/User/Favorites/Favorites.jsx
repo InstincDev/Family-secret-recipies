@@ -8,27 +8,30 @@ import { wrapper, mealList } from "../../../Sliders/Sliders.module.sass";
 // Add subTitle for each slider
 
 const Favorites = ({ recipeList, title }) => {
+    
+    console.log(recipeList);
+
     return ( 
-   
-        <div >
-          <h3>{title}</h3>
-             <Splide options={{perPage: 4, pagination: false, drag: 'free'}}>
-                {recipeList &&
-                    recipeList.map((recipe, i) => (
-                    <SplideSlide key={`recipeList-${i}`}>
-                     <div className={mealList}>       
-                                <RecipePin
-                                    key={`recipeList-${i}`}
-                                    id={recipe._id}
-                                    meal={recipe.meal}
-                                    description={recipe.category}
-                                    image={recipe.image}
-                                />
-                        </div>
-                    </SplideSlide>    
-                    ))}
-            </Splide>
-        </div> 
+   "hello"
+        // <div >
+        //   <h3>{title}</h3>
+        //      <Splide options={{perPage: 4, pagination: false, drag: 'free'}}>
+        //         {recipeList &&
+        //             recipeList.map((recipe, i) => (
+        //             <SplideSlide key={`recipeList-${i}`}>
+        //              <div className={mealList}>       
+        //                         <RecipePin
+        //                             key={`recipeList-${i}`}
+        //                             id={recipe._id}
+        //                             meal={recipe.meal}
+        //                             description={recipe.category}
+        //                             image={recipe.image}
+        //                         />
+        //                 </div>
+        //             </SplideSlide>    
+        //             ))}
+        //     </Splide>
+        // </div> 
     );
 };
 

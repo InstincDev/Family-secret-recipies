@@ -2,8 +2,16 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import RecipePin from "../../components/RecipePin/RecipePin";
 import { wrapper, mealList } from "./Favorites.module.sass";
+import { useEffect } from "react";
 
-const Favorites = ({ recipeList }) => {
+const Favorites = (title, recipeList) => {
+    console.log(recipeList);
+    
+    useEffect(()=>{
+
+    },[])
+
+    
     return ( 
    
         <div >

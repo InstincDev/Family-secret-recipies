@@ -11,20 +11,21 @@ import RecipeSlide from "../../components/Sliders/RecipeSlide";
 
 
 
-const HomePage = () => {
+const HomePage = ({ user }) => {
     const { recipeData, setRecipeData } = useContext(RecipeAPIContext);
     // const [sliderTypes, setSliderTypes] = useState([]);
     const [areaTypes, setAreaTypes] = useLocalStorage("areaTypes",[]);
     const [categoryTypes, setCategoryTypes] = useLocalStorage("categoryTypes",[]);
     const [ingredientTypes, setIngredientTypes] = useLocalStorage("ingredientTypes",[]);
     const [tagTypes, setTagTypes] = useLocalStorage("tagTypes",[]);
+    const [favoriteTypes, setFavoriteTypes] = useLocalStorage("favoriteTypes",[]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        getSliderTypes();
-    }, []);
+        getSliderTypes(user);
+    }, [user]);
 
-    const getSliderTypes = async () => {
+    const getSliderTypes = async (currentUser) => {
         try {
             const recipes = await fetchRecipes();
             const data = recipes.data;
@@ -34,6 +35,7 @@ const HomePage = () => {
             const categorySet = new Set();
             const ingredientSet = new Set();
             const tagSet = new Set();
+            const favoritesSet = []
 
             for (const recipe of data) {
                 if (recipe.area != null) {
@@ -50,6 +52,14 @@ const HomePage = () => {
                 if (recipe.tag != null) {
                     recipe.tag.forEach((tag) => tagSet.add(tag));
                 }
+               if(recipe.favorites > 0 && recipe.users.includes(currentUser.id)){
+                    favoritesSet.push(recipe)
+                    console.log(favoritesSet);
+               }
+               
+               
+               
+                
             }
 
             if(areaTypes.length === 0){
@@ -58,6 +68,7 @@ const HomePage = () => {
             if(categoryTypes.length === 0){setCategoryTypes(getRandomTypes([...categorySet].sort(), 2));}
             if(ingredientTypes.length === 0){setIngredientTypes(getRandomTypes([...ingredientSet].sort(), 3));}
             if(tagTypes.length === 0){setTagTypes(getRandomTypes([...tagSet].sort(), 2));}
+            if(favoriteTypes.length == 0){setFavoriteTypes(favoritesSet)}
             // const newTypesObj = {
             //     area: getRandomTypes(areaTypes, 2),
             //     category: getRandomTypes(categoryTypes, 2),
@@ -72,7 +83,8 @@ const HomePage = () => {
             console.error(error.message);
         }
     };
-console.log(tagTypes);
+console.log(favoriteTypes);
+
     const getRandomTypes = (typeArray, count) => {
         const randomIndices = numberSet(count, typeArray.length);
         const randomTypes = [];
@@ -106,7 +118,8 @@ console.log(tagTypes);
                     <p>Prep Recipes...</p>
                 ) : (
                     <>
-                        {/* <Favorites title="favorites"  /> */}
+                        <h4>Favorites</h4>
+                        <Favorites title="favorites"  recipeList={favoriteTypes}/>
 
                         {/* <FamilyGroups title="family"  /> */}
 

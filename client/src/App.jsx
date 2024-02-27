@@ -39,7 +39,7 @@ const App = ()=> {
         };
         getUser();
     }, []);
-    console.log(user);
+    
     return (
         <>
             <BrowserRouter>
@@ -47,7 +47,7 @@ const App = ()=> {
                 <Routes>
                     <Route
                         path="/"
-                        element={<HomePage/>}
+                        element={<HomePage user = {user}/>}
                     />
                     <Route
                         path="/login"
