@@ -17,7 +17,7 @@ const RecipePin = ({ id, meal, description, image }) => {
                     <h2>{meal}</h2>
                     <p>{description}</p>
             </Link>
-                    <p><FavoriteButton id = {id}/></p>
+                    <FavoriteButton id = {id}/>
                 </div>
             
             

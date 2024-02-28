@@ -36,10 +36,10 @@ const FavoriteButton = ({id}) => {
 
     return (
     <div className={fav}>
-        {favorited ? <button onClick={handleUnfavorite}><FaRegHeart /></button> : <button onClick={handleFavorite}><FaHeart /></button>  
+        {favorited ? <button  onClick={handleUnfavorite} ><FaRegHeart /></button> : <button  onClick={handleFavorite}><FaHeart /></button>  
         }
         
-        {favorites}
+        <p>{favorites}</p>
         </div>
   )
 }
