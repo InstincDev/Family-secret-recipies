@@ -12,20 +12,23 @@ import { wrapper, mealList } from "../../../Sliders/Sliders.module.sass";
 const Favorites = ({ recipeList, title }) => {
     
 
-    const [showAll, setShowAll] = useState([]);
-    const [recipeSlide, setRecipeSlide] = useLocalStorage(
-        "recipeSlide" + title,
-        []
-    );
+    const [showAll, setShowAll] = useState(false);
+  
+    const visibleRecipeList =  showAll ? recipeList : recipeList.slice(0, 10)
 
+console.log(visibleRecipeList);
 
-    console.log();
-   return(
+    console.log(recipeList);
+   
+    function handleShowAll() {
+        setShowAll(true);
+    }
+    return(
         <div >
          
              <Splide options={{perPage: 4, pagination: false, drag: 'free'}}>
-                {recipeList &&
-                    recipeList.map((recipe, i) => (
+                {visibleRecipeList &&
+                    visibleRecipeList.map((recipe, i) => (
                     <SplideSlide key={`recipeList-${i}`}>
                      <div className={mealList}>       
                                 <RecipePin
@@ -38,6 +41,10 @@ const Favorites = ({ recipeList, title }) => {
                         </div>
                     </SplideSlide>    
                     ))}
+                    { !showAll && visibleRecipeList.length!= recipeList.length? <SplideSlide> <button
+                                                      onClick={handleShowAll} >
+                                                      Show All
+                                                  </button></SplideSlide> : null}
             </Splide>
         </div> 
     );
