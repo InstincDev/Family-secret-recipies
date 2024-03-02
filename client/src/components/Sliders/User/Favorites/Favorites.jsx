@@ -19,7 +19,7 @@ const Favorites = ({ recipeList, title }) => {
     );
 
 
-    
+    console.log();
    return(
         <div >
          

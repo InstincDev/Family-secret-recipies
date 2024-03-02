@@ -54,7 +54,6 @@ const HomePage = ({ user }) => {
                 }
                if(recipe.favorites > 0 && recipe.users.includes(currentUser.id)){
                     favoritesSet.push(recipe)
-                    console.log(favoritesSet);
                }
                
                
@@ -111,6 +110,11 @@ console.log(favoriteTypes);
         return [...set];
     };
 
+    const reshuffleButton =()=>{
+       console.log("click");
+        localStorage.clear()
+    }
+
     return (
         <>
             <div>
@@ -118,8 +122,10 @@ console.log(favoriteTypes);
                     <p>Prep Recipes...</p>
                 ) : (
                     <>
+                        <button onClick={reshuffleButton}>Reshuffle</button>
+                        
                         <h4>Favorites</h4>
-                        <Favorites title="favorites"  recipeList={favoriteTypes}/>
+                        {user !== null && <Favorites title="favorites"  recipeList={favoriteTypes}/>}
 
                         {/* <FamilyGroups title="family"  /> */}
 

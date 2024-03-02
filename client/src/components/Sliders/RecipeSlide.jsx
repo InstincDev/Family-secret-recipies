@@ -18,8 +18,8 @@ const RecipeSlide = ({ title, slideList }) => {
       "recipeSlide" + title,
       []
   );
- const visibleRecipeSlide = recipeSlide.map((recipes, index) => showAll.includes(index) ? recipes : recipes.slice(0, 10))
-
+ 
+const visibleRecipeSlide = recipeSlide.map((recipes, index) => showAll.includes(index) ? recipes : recipes.slice(0, 10))
 
   useEffect(() => {
       const getRecipes = async () => {
@@ -43,13 +43,14 @@ const RecipeSlide = ({ title, slideList }) => {
                 
                   const shownRecipes = getRandomTypes(recipes, recipes.length)
                       
-
+                console.log(shownRecipes);
 
                   return shownRecipes;
               });
-              
+              console.log(recipeSlide);
               if (recipeSlide.length == 0) {
-                  setRecipeSlide(slides);
+                  
+                setRecipeSlide(slides);
               }
           } catch (error) {
               console.error(error.message);
@@ -57,10 +58,13 @@ const RecipeSlide = ({ title, slideList }) => {
       };
 
       getRecipes();
-  }, [slideList, title, recipeData]);
+      
 
-  // console.log(recipeSlide);
-  // console.log(recipeData);
+  }, [slideList, title, recipeData]);
+console.log(slideList);
+//   console.log(recipeData);
+console.log(recipeSlide);
+console.log(visibleRecipeSlide);
 
   function getRandomTypes(typeArray, count) {
       const randomIndices = numberSet(count, typeArray.length);
@@ -106,9 +110,8 @@ const RecipeSlide = ({ title, slideList }) => {
                           {visibleRecipeSlide[index] &&
                               visibleRecipeSlide[index].map((recipe, i) => (
                                  <SplideSlide
-                                      key={`recipeList-${i}`}
-                                      
-                                  >
+                                      key={`recipeList-${i}`}>
+
                                       <div className={mealList}>
                                           {console.log(visibleRecipeSlide[index].length)}
                                          
@@ -127,7 +130,7 @@ const RecipeSlide = ({ title, slideList }) => {
                                       
                                   </SplideSlide>
                               ))}
-                              { !showAll.includes(index) && visibleRecipeSlide[index].length!= recipeSlide[index].length? <SplideSlide> <button
+                              { visibleRecipeSlide[index] && !showAll.includes(index) && visibleRecipeSlide[index].length!= recipeSlide[index].length? <SplideSlide> <button
                                                       onClick={()=>{handleShowAll(index)}} >
                                                       Show All
                                                   </button></SplideSlide> : null}
