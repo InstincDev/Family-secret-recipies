@@ -18,12 +18,12 @@ const HomePage = ({ user }) => {
     const [categoryTypes, setCategoryTypes] = useLocalStorage("categoryTypes",[]);
     const [ingredientTypes, setIngredientTypes] = useLocalStorage("ingredientTypes",[]);
     const [tagTypes, setTagTypes] = useLocalStorage("tagTypes",[]);
-    const [favoriteTypes, setFavoriteTypes] = useLocalStorage("favoriteTypes",[]);
+    const [favoriteTypes, setFavoriteTypes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        getSliderTypes(user);
-    }, [user]);
+        if(areaTypes.length == 0 || categoryTypes.length == 0 || ingredientTypes.length == 0 || tagTypes.length == 0 || recipeData == undefined){ getSliderTypes(user)};
+    }, [user, areaTypes, categoryTypes, ingredientTypes, tagTypes, recipeData]);
 
     const getSliderTypes = async (currentUser) => {
         try {
@@ -60,14 +60,14 @@ const HomePage = ({ user }) => {
                
                 
             }
-
+            
             if(areaTypes.length === 0){
               setAreaTypes(getRandomTypes([...areaSet].sort(), 2));  
             }
             if(categoryTypes.length === 0){setCategoryTypes(getRandomTypes([...categorySet].sort(), 2));}
             if(ingredientTypes.length === 0){setIngredientTypes(getRandomTypes([...ingredientSet].sort(), 3));}
             if(tagTypes.length === 0){setTagTypes(getRandomTypes([...tagSet].sort(), 2));}
-            if(favoriteTypes.length !== favoritesSet.length){setFavoriteTypes(favoritesSet)}
+            setFavoriteTypes(favoritesSet)
             // const newTypesObj = {
             //     area: getRandomTypes(areaTypes, 2),
             //     category: getRandomTypes(categoryTypes, 2),
@@ -113,6 +113,12 @@ console.log(favoriteTypes);
     const reshuffleButton =()=>{
        console.log("click");
         localStorage.clear()
+        setAreaTypes([])
+        setCategoryTypes([])
+        setIngredientTypes([])
+        setTagTypes([])
+        
+        // window.location.reload();
     }
 
     return (

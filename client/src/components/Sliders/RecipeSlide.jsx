@@ -15,7 +15,7 @@ const RecipeSlide = ({ title, slideList }) => {
   const { recipeData } = useContext(RecipeAPIContext);
   const [showAll, setShowAll] = useState([]);
   const [recipeSlide, setRecipeSlide] = useLocalStorage(
-      "recipeSlide" + title,
+      "recipeSlide" + title + slideList,
       []
   );
  
@@ -48,19 +48,19 @@ const visibleRecipeSlide = recipeSlide.map((recipes, index) => showAll.includes(
                   return shownRecipes;
               });
               console.log(recipeSlide);
-              if (recipeSlide.length == 0) {
-                  
+                   
                 setRecipeSlide(slides);
-              }
+              
           } catch (error) {
               console.error(error.message);
           }
       };
 
-      getRecipes();
+      if (recipeSlide.length == 0){getRecipes();}
       
 
-  }, [slideList, title, recipeData]);
+  }, [slideList, title, recipeData, recipeSlide]);
+
 console.log(slideList);
 //   console.log(recipeData);
 console.log(recipeSlide);
