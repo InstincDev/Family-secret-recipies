@@ -12,13 +12,13 @@ const RecipePin = ({ id, meal, description, image }) => {
                 <img src={image} alt="Placeholder Image" />
             </Link>
             
-                <div className={mealInfo}>
-            <Link to={`/recipe/${id}`}>
+            <div className={mealInfo}>
+                <Link to={`/recipe/${id}`}>
                     <h2>{meal}</h2>
                     <p>{description}</p>
-            </Link>
+                </Link>
                     <FavoriteButton id = {id}/>
-                </div>
+            </div>
             
             
         </div>
