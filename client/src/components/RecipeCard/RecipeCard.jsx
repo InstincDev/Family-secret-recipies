@@ -66,7 +66,14 @@ const RecipeCard = ({ recipeList }) => {
                         <section className={comments}>
                             <h3>Comments</h3>
                             <ul>
-                                <li>
+                                
+                                {recipes.comments.map((comment, i) =>
+                                    <li key={i}>
+                                        {console.log(comment)}
+                                        <p>{comment}</p>
+                                    </li>
+                                )}
+                                {/* <li>
                                     <p>User 1: This is a great recipe!</p>
                                     <small>2 hours ago</small>
                                 </li>
@@ -76,7 +83,7 @@ const RecipeCard = ({ recipeList }) => {
                                         delicious!
                                     </p>
                                     <small>1 day ago</small>
-                                </li>
+                                </li> */}
                             </ul>
                             <form
                                 action="/recipes/sample-recipe/like"
@@ -85,14 +92,14 @@ const RecipeCard = ({ recipeList }) => {
                                 <button type="submit">Like</button>
                             </form>
                             <form
-                                action="/recipes/sample-recipe/comments"
+                                action={"http://localhost:7575/recipe/"+ recipes._id +"/comments"}
                                 method="POST"
                             >
-                                <label for="comment">Comment:</label>
+                                <label for="comments">Comment:</label>
                                 <input
                                     type="text"
-                                    name="comment"
-                                    id="comment"
+                                    name="comments"
+                                    id="comments"
                                 />
                                 <button type="submit">Post Comment</button>
                             </form>

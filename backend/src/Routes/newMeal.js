@@ -70,4 +70,26 @@ mealRouter.post("/:mealId/unfavorite", async (req,res) =>{
     }
 })
 
+mealRouter.post("/:mealId/comments", async (req,res) =>{
+    const {mealId} = req.params;
+    const user = req.user
+    try {
+        await Connection();
+        const meal = await Meal.findById(mealId)
+        const comment = req.body.comments
+        if(user){       
+            meal.comments.push(comment)
+            await meal.save();
+            res.redirect("http://localhost:5173/recipe/"+mealId)
+            // res.json({success: true, message: "New Comment"})
+
+        }
+    } catch (error) {
+        console.log(error.message);
+        res.status(400).send(error.message)
+    }
+})
+
+
+
 export default mealRouter;

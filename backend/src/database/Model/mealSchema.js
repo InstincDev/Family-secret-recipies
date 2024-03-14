@@ -11,6 +11,7 @@ const mealSchema = new Schema({
     tag: {type:[String]},
     ingredient:{type:[ingredientSchema]},
     favorites: {type:Number, default: 0},
+    comments:{type:[String]},
     users: {type:[String]},
     createdBy: {type:String}
 });

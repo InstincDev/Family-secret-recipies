@@ -2,15 +2,16 @@
 	✔ Favoriting (5d)
 	✔ View All Recipes within RecipeSlide component (2d)
 02 - 02-24 -> 03-02:
-	☐ Refactor Favorites to keep track of users (2d)
-	☐ FavoitesList (1d)
+	✔ Refactor Favorites to keep track of users (2d)
+	✔ FavoitesList (1d)
 03 - 03-02 -> 03-09:
-	☐ Nothing
+	✔ Nothing
 04 - 03-09 -> 03-16:
-	☐ Reshuffle Dashboard (2d)
-	☐ Comments (4d)
+	✔ Reshuffle Dashboard (2d)
+	✔ Base Comments (1d)
+	☐ Full Comments (4d)
 05 - 03-16 -> 03-23:
-	☐ Comments (6d)
+	☐ Full Comments (6d)
 06 - 03-23 -> 03-30:
 	☐ Profile Page (7d)
 07 - 03-30 -> 04-06:

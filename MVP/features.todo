@@ -14,20 +14,27 @@ View All Recipes within RecipeSlide component (2d):
 	✔ Upon clicking the View All card, the RecipeSlide will show all available Recipes
 
 Refactor Favorites to keep track of users (2d):
-	☐ Favorite status of a Recipe will be accurate to the current User
-		☐ Accomplished by the Recipe model keeping track of the User IDs that have favorited it
+	✔ Favorite status of a Recipe will be accurate to the current User
+		✔ Accomplished by the Recipe model keeping track of the User IDs that have favorited it
 
 FavoitesList (1d):
-	☐ User can view all of their favorited Recipes from the Dashboard (1d)
+	✔ User can view all of their favorited Recipes from the Dashboard (1d)
 
 Reshuffle Dashboard (2d):
-	☐ Guest can press a button to reshuffle the dashboard
+	✔ Guest can press a button to reshuffle the dashboard
 
-Comments (10d):
+Base Comments (1d):
 	From the Recipe Page:
-		☐ User can make a Comment
-		☐ User can delete their own Comments
-		☐ Guest can see the username, date, and content of all Comments
+		✔ User can make a Comment
+		✔ Guest can see the content of each comment
+
+Full Comments (10d):
+	From the Recipe page:
+		☐ User can make a comment that retains who created it, the text, and when it was created
+		☐ User can delete their own Comments by ID
+		☐ Guest can see for each Comment the:
+			☐ username
+			☐ date
 
 Profile Page (7d):
 	☐ User can visit the /user/USERNAME page of any Target User

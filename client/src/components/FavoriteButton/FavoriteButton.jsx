@@ -36,7 +36,7 @@ const FavoriteButton = ({id}) => {
 
     return (
     <div className={fav}>
-        {favorited ? <button  onClick={handleUnfavorite} ><FaRegHeart /></button> : <button  onClick={handleFavorite}><FaHeart /></button>  
+        {favorited ? <button  onClick={handleUnfavorite} aria-label="Unfavorite"><FaRegHeart /></button> : <button  onClick={handleFavorite} aria-label="Favorite"><FaHeart /></button>  
         }
         
         <p>{favorites}</p>
